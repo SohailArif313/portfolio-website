@@ -53,981 +53,427 @@
                 background: #3f3f46;
             }
 
-            /* Ambient background design effects */
+            /* Scroll Animation Classes */
+            .reveal-element {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .reveal-element.active {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            /* Pulse Glow Animation */
             @keyframes pulse-glow {
-                0%, 100% { opacity: 0.4; transform: scale(1); }
-                50% { opacity: 0.6; transform: scale(1.05); }
+                0%, 100% { opacity: 0.5; transform: scale(1); }
+                50% { opacity: 0.8; transform: scale(1.05); }
             }
             .glowing-bg {
                 animation: pulse-glow 10s infinite ease-in-out;
             }
 
-            /* Glassmorphism panel styling */
+            /* Glassmorphism details */
             .glass-panel {
-                background: rgba(18, 18, 20, 0.85);
-                backdrop-filter: blur(16px);
-                -webkit-backdrop-filter: blur(16px);
-            }
-
-            /* Smooth Virtual Page Transitions */
-            .page-view {
-                display: none;
-                opacity: 0;
-                transform: translateY(12px);
-                transition: opacity 0.3s ease-out, transform 0.3s ease-out;
-            }
-            .page-view.active-page {
-                display: block;
-                opacity: 1;
-                transform: translateY(0);
+                background: rgba(18, 18, 20, 0.6);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
             }
         </style>
     </head>
     
     <body class="bg-brand-dark text-zinc-100 font-sans antialiased min-h-screen relative overflow-x-hidden selection:bg-brand-500 selection:text-white">
 
-        <!-- Background Ambient Glows (Piche chalne wale khubsoorat light effects) -->
+        <!-- Background Ambient Glows -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-            <div class="glowing-bg absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-600/5 blur-[120px]"></div>
-            <div class="glowing-bg absolute bottom-[20%] right-[-10%] w-[45%] h-[45%] rounded-full bg-indigo-600/5 blur-[130px]"></div>
+            <div class="glowing-bg absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-600/10 blur-[120px]"></div>
+            <div class="glowing-bg absolute bottom-[20%] right-[-10%] w-[45%] h-[45%] rounded-full bg-blue-600/10 blur-[130px] animation-delay-2000"></div>
         </div>
 
-        <!-- Mobile Header (Jo sirf mobile screens par dikhega) -->
-        <div class="fixed top-0 left-0 right-0 z-40 bg-zinc-950/80 backdrop-blur-md border-b border-brand-border lg:hidden flex items-center justify-between px-6 py-4">
-            <button onclick="navigateTo('home')" class="text-lg font-extrabold tracking-tight">
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-indigo-400">Sohail's</span> Portfolio
-            </button>
-            <button id="sidebar-toggle" class="flex items-center justify-center w-10 h-10 rounded-xl bg-zinc-900 border border-brand-border text-zinc-100 hover:bg-zinc-800 transition-colors focus:outline-none" aria-label="Toggle Menu">
-                <i class="fa-solid fa-bars text-lg" id="toggle-icon"></i>
-            </button>
-        </div>
+        <!-- Sidebar Toggle for Mobile (Relocated to top-left) -->
+        <button id="sidebar-toggle" class="fixed top-4 left-4 z-50 lg:hidden flex items-center justify-center w-12 h-12 rounded-xl bg-brand-card border border-brand-border text-zinc-100 hover:bg-zinc-800 transition-colors focus:outline-none" aria-label="Toggle Menu">
+            <i class="fa-solid fa-bars text-xl" id="toggle-icon"></i>
+        </button>
 
-        <div id="wrapper" class="flex min-h-screen pt-16 lg:pt-0 relative z-10">
+        <div id="wrapper" class="flex min-h-screen relative z-10">
 
-            <!-- Sidebar Navigation Drawer (Desktop par constant rahega, Mobile par slide hoga) -->
-            <aside id="sidebar" class="fixed top-0 bottom-0 left-0 w-[300px] bg-brand-dark lg:bg-zinc-950 border-r border-brand-border z-45 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
-                <div class="inner h-full flex flex-col justify-between p-8 pt-24 lg:pt-12 overflow-y-auto">
+            <!-- Main Content Area (Relocated desktop spacing to the left) -->
+            <div id="main" class="flex-1 w-full lg:ml-[300px] transition-all duration-300">
+                <div class="inner max-w-4xl mx-auto px-6 py-8 md:px-12 md:py-16 space-y-16 lg:space-y-24">
 
-                    <div class="space-y-8">
-                        <!-- Brand Branding -->
-                        <div class="pb-4 border-b border-brand-border hidden lg:block">
-                            <button onclick="navigateTo('home')" class="text-xl font-extrabold tracking-tight hover:text-brand-500 transition-colors text-left w-full">
-                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-indigo-400">Sohail's</span> Portfolio
-                            </button>
-                            <p class="text-[10px] text-zinc-500 mt-1 uppercase tracking-widest font-bold">AI Developer & Backend</p>
+                    <!-- Header -->
+                    <header id="header" class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-brand-border reveal-element active">
+                        <a href="index.html" class="logo text-xl font-extrabold tracking-tight hover:text-brand-500 transition-colors">
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-indigo-400">Sohail's</span> Portfolio
+                        </a>
+                        <ul class="icons flex items-center gap-4 text-zinc-400">
+                            <li><a href="https://x.com/SohailArif313" class="hover:text-brand-500 text-lg transition-colors duration-200" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i><span class="sr-only">Twitter</span></a></li>
+                            <li><a href="https://www.facebook.com/profile.php?id=61585454855852" class="hover:text-brand-500 text-lg transition-colors duration-200" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i><span class="sr-only">Facebook</span></a></li>
+                            <li><a href="https://www.linkedin.com/in/muhammad-sohail-316279397/" class="hover:text-brand-500 text-lg transition-colors duration-200" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i><span class="sr-only">LinkedIn</span></a></li>
+                            <li><a href="https://github.com/SohailArif313" class="hover:text-brand-500 text-lg transition-colors duration-200" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i><span class="sr-only">GitHub</span></a></li>
+                            <li><a href="https://medium.com/@muhammadsohail3542" class="hover:text-brand-500 text-lg transition-colors duration-200" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-medium"></i><span class="sr-only">Medium</span></a></li>
+                        </ul>
+                    </header>
+
+                    <!-- SECTION 1: About Me / Banner -->
+                    <section id="banner" class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center py-6 reveal-element">
+                        <div class="content md:col-span-7 space-y-6">
+                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-500 text-xs font-semibold uppercase tracking-wider">
+                                <span class="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"></span> Open to Collaborations
+                            </div>
+                            <header class="space-y-3">
+                                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none text-zinc-100">
+                                    Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 via-indigo-400 to-blue-400">Muhammad Sohail</span>
+                                </h1>
+                                <p class="text-lg sm:text-xl font-semibold text-zinc-300">AI Developer & Backend Engineer</p>
+                            </header>
+                            <p class="text-zinc-400 text-base leading-relaxed">
+                                I'm a developer who loves building smart backend systems and AI tools that actually work. I focus on making things scalable, clean, and efficient. Currently, I'm deep into Python and AI integration, turning complex ideas into simple, functional code.
+                            </p>
+                            <div class="pt-2">
+                                <a href="mailto:muhammadsohail3542@gmail.com" class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 text-white font-medium hover:from-brand-500 hover:to-indigo-500 shadow-lg shadow-brand-500/15 hover:shadow-brand-500/25 transform hover:-translate-y-0.5 transition-all duration-200">
+                                    Contact Me <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                                </a>
+                            </div>
                         </div>
+                        <div class="md:col-span-5 flex justify-center md:justify-end">
+                            <div class="relative group">
+                                <!-- Modern decorative glowing backdrop -->
+                                <div class="absolute -inset-1.5 bg-gradient-to-r from-brand-500 to-blue-500 rounded-2xl blur opacity-30 group-hover:opacity-40 transition duration-300"></div>
+                                <span class="image object relative block rounded-2xl overflow-hidden bg-zinc-900 border border-brand-border w-[280px] h-[320px]">
+                                    <!-- Embedded fallback image using gorgeous tech styling -->
+                                    <img src="images/my-photo.jpg" 
+                                         alt="Muhammad Sohail" 
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/280x320/2e1065/ffffff?text=MS+AI';" />
+                                </span>
+                            </div>
+                        </div>
+                    </section>
 
-                        <!-- Main Multi-page Links (Section navigation khatam, ab ye tabs pages open karenge) -->
-                        <nav id="menu" class="space-y-1">
-                            <p class="text-[10px] font-semibold uppercase tracking-widest text-zinc-500 mb-3 px-3">Navigation Menu</p>
-                            <ul class="space-y-1.5">
-                                <li>
-                                    <button onclick="navigateTo('home')" data-page="home" class="nav-btn w-full flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 text-sm font-medium text-brand-500 bg-brand-500/10 border-l-4 border-brand-500 pl-3">
-                                        <i class="fa-solid fa-house text-base"></i> Home
-                                    </button>
-                                </li>
-                                <li>
-                                    <button onclick="navigateTo('about')" data-page="about" class="nav-btn w-full flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 text-sm font-medium text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200">
-                                        <i class="fa-solid fa-user text-base"></i> About Me
-                                    </button>
-                                </li>
-                                <li>
-                                    <button onclick="navigateTo('skills')" data-page="skills" class="nav-btn w-full flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 text-sm font-medium text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200">
-                                        <i class="fa-solid fa-cubes text-base"></i> Technical Skills
-                                    </button>
-                                </li>
-                                <li>
-                                    <button onclick="navigateTo('projects')" data-page="projects" class="nav-btn w-full flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 text-sm font-medium text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200">
-                                        <i class="fa-solid fa-folder-open text-base"></i> Projects
-                                    </button>
-                                </li>
-                                <li>
-                                    <button onclick="navigateTo('blogs')" data-page="blogs" class="nav-btn w-full flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 text-sm font-medium text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200">
-                                        <i class="fa-solid fa-feather text-base"></i> Blogs
-                                    </button>
-                                </li>
-                                <li>
-                                    <button onclick="navigateTo('contact')" data-page="contact" class="nav-btn w-full flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 text-sm font-medium text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200">
-                                        <i class="fa-solid fa-paper-plane text-base"></i> Contact Info
-                                    </button>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                    <!-- SECTION 2: Technical Skills -->
+                    <section id="skills" class="space-y-8 border-t border-brand-border pt-12 reveal-element">
+                        <header class="major space-y-2">
+                            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-100 flex items-center gap-3">
+                                <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-solid fa-cubes"></i></span>
+                                My Expertise
+                            </h2>
+                            <p class="text-zinc-400 text-sm max-w-xl">Leveraging cutting-edge tools and frameworks to construct secure, intelligence-driven products.</p>
+                        </header>
 
-                    <!-- Footer Info and Social Links -->
-                    <div class="space-y-6 pt-8 border-t border-brand-border mt-8">
+                        <div class="features grid grid-cols-1 md:grid-cols-2 gap-6">
+                            
+                            <!-- Skill 1 -->
+                            <article class="p-6 rounded-2xl bg-zinc-900/40 border border-brand-border hover:border-brand-500/30 transition-all duration-300 group hover:-translate-y-1">
+                                <div class="flex items-start gap-4">
+                                    <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-500 text-xl group-hover:scale-110 transition-transform">
+                                        <i class="fa-solid fa-gem"></i>
+                                    </span>
+                                    <div class="content space-y-2">
+                                        <h3 class="text-lg font-bold text-zinc-100">Data Engineering & Preprocessing</h3>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">I work with raw data and turn it into clean, structured datasets that are actually ready to be used in real AI and machine learning projects.</p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Skill 2 -->
+                            <article class="p-6 rounded-2xl bg-zinc-900/40 border border-brand-border hover:border-brand-500/30 transition-all duration-300 group hover:-translate-y-1">
+                                <div class="flex items-start gap-4">
+                                    <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-500 text-xl group-hover:scale-110 transition-transform">
+                                        <i class="fa-solid fa-paper-plane"></i>
+                                    </span>
+                                    <div class="content space-y-2">
+                                        <h3 class="text-lg font-bold text-zinc-100">Automated Data Collection (ETL Systems)</h3>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">I build lightweight automation systems that collect, clean, and structure data from multiple sources, keeping everything updated automatically without manual effort.</p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Skill 3 -->
+                            <article class="p-6 rounded-2xl bg-zinc-900/40 border border-brand-border hover:border-brand-500/30 transition-all duration-300 group hover:-translate-y-1">
+                                <div class="flex items-start gap-4">
+                                    <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-500 text-xl group-hover:scale-110 transition-transform">
+                                        <i class="fa-solid fa-rocket"></i>
+                                    </span>
+                                    <div class="content space-y-2">
+                                        <h3 class="text-lg font-bold text-zinc-100">Unstructured Data Handling</h3>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">I extract useful information from messy data like PDFs, images, and complex web pages using Python and AI tools.</p>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Skill 4 -->
+                            <article class="p-6 rounded-2xl bg-zinc-900/40 border border-brand-border hover:border-brand-500/30 transition-all duration-300 group hover:-translate-y-1">
+                                <div class="flex items-start gap-4">
+                                    <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-brand-500/10 border border-brand-500/20 text-brand-500 text-xl group-hover:scale-110 transition-transform">
+                                        <i class="fa-solid fa-signal"></i>
+                                    </span>
+                                    <div class="content space-y-2">
+                                        <h3 class="text-lg font-bold text-zinc-100">API Development</h3>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">I create fast and reliable APIs using FastAPI and Flask so AI models and applications can communicate and work together smoothly.</p>
+                                    </div>
+                                </div>
+                            </article>
+
+                        </div>
+                    </section>
+
+                    <!-- SECTION 3: Projects -->
+                    <section id="projects" class="space-y-8 border-t border-brand-border pt-12 reveal-element">
+                        <header class="major space-y-2">
+                            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-100 flex items-center gap-3">
+                                <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-solid fa-code-branch"></i></span>
+                                Featured Projects
+                            </h2>
+                            <p class="text-zinc-400 text-sm max-w-xl">Explore interactive systems, data processing solutions, and AI algorithms built from scratch.</p>
+                        </header>
+
+                        <div class="posts grid grid-cols-1 md:grid-cols-2 gap-6">
+                            
+                            <!-- Project 1 -->
+                            <article class="flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-700 hover:shadow-xl transition-all duration-300 group">
+                                <a href="https://github.com/SohailArif313/Netflix_Analysis_1990s" class="block aspect-video w-full overflow-hidden bg-zinc-800 border-b border-brand-border" target="_blank" rel="noopener noreferrer">
+                                    <img src="images/netflix-data-insights-1990s.jpg" 
+                                         alt="Netflix Project" 
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/1e1b4b/ffffff?text=Netflix+Analysis';" />
+                                </a>
+                                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                                    <div class="space-y-2">
+                                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-500 transition-colors">Netflix Data Insights (1990s)</h3>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Performed exploratory data analysis on Netflix dataset to uncover trends, content distribution, and insights from the 1990s.</p>
+                                    </div>
+                                    <div>
+                                        <a href="https://github.com/SohailArif313/Netflix_Analysis_1990s" class="inline-flex items-center gap-2 text-sm text-brand-500 hover:text-brand-600 font-semibold group-hover:translate-x-1 transition-transform" target="_blank" rel="noopener noreferrer">
+                                            View Code <i class="fa-solid fa-chevron-right text-xs"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Project 2 -->
+                            <article class="flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-700 hover:shadow-xl transition-all duration-300 group">
+                                <a href="https://github.com/SohailArif313/nobel_prize_analysis" class="block aspect-video w-full overflow-hidden bg-zinc-800 border-b border-brand-border" target="_blank" rel="noopener noreferrer">
+                                    <img src="images/nobel_prize.jpg" 
+                                         alt="Nobel Prize Analysis" 
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/0f172a/ffffff?text=Nobel+Prize+Analysis';" />
+                                </a>
+                                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                                    <div class="space-y-2">
+                                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-500 transition-colors">Nobel Prize Analysis</h3>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Analyzed Nobel Prize winners dataset using Python to visualize trends, country distribution, and gender diversity.</p>
+                                    </div>
+                                    <div>
+                                        <a href="https://github.com/SohailArif313/nobel_prize_analysis" class="inline-flex items-center gap-2 text-sm text-brand-500 hover:text-brand-600 font-semibold group-hover:translate-x-1 transition-transform" target="_blank" rel="noopener noreferrer">
+                                            View Code <i class="fa-solid fa-chevron-right text-xs"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Project 3 -->
+                            <article class="flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-700 hover:shadow-xl transition-all duration-300 group">
+                                <a href="https://github.com/SohailArif313/nyc_schools_sat_analysis" class="block aspect-video w-full overflow-hidden bg-zinc-800 border-b border-brand-border" target="_blank" rel="noopener noreferrer">
+                                    <img src="images/nyc_sat_analysis.jpg" 
+                                         alt="NYC Schools SAT Analysis" 
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/172554/ffffff?text=NYC+SAT+Analysis';" />
+                                </a>
+                                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                                    <div class="space-y-2">
+                                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-500 transition-colors">NYC Schools SAT Analysis</h3>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">A detailed analysis of SAT performance across New York City high schools using Python, highlighting top schools, borough-wise trends, and score patterns.</p>
+                                    </div>
+                                    <div>
+                                        <a href="https://github.com/SohailArif313/nyc_schools_sat_analysis" class="inline-flex items-center gap-2 text-sm text-brand-500 hover:text-brand-600 font-semibold group-hover:translate-x-1 transition-transform" target="_blank" rel="noopener noreferrer">
+                                            View Code <i class="fa-solid fa-chevron-right text-xs"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <!-- Project 4 -->
+                            <article class="flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-700 hover:shadow-xl transition-all duration-300 group">
+                                <a href="https://github.com/SohailArif313/customer-analytics-data-prep" class="block aspect-video w-full overflow-hidden bg-zinc-800 border-b border-brand-border" target="_blank" rel="noopener noreferrer">
+                                    <img src="./images/customer-analytics-data-prep.jpg" 
+                                         alt="Customer Analytics Data Prep" 
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/030712/ffffff?text=Customer+Data+Prep';" />
+                                </a>
+                                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                                    <div class="space-y-2">
+                                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-500 transition-colors">Customer Analytics Data Prep</h3>
+                                        <p class="text-zinc-400 text-sm leading-relaxed">Processed large-scale customer datasets by optimizing data types, reducing memory usage, and preparing clean features for predictive modeling.</p>
+                                    </div>
+                                    <div>
+                                        <a href="https://github.com/SohailArif313/customer-analytics-data-prep" class="inline-flex items-center gap-2 text-sm text-brand-500 hover:text-brand-600 font-semibold group-hover:translate-x-1 transition-transform" target="_blank" rel="noopener noreferrer">
+                                            View Code <i class="fa-solid fa-chevron-right text-xs"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+
+                        </div>
+                    </section>
+
+                    <!-- SECTION 4: Medium Articles -->
+                    <section id="articles" class="p-8 rounded-2xl bg-gradient-to-r from-zinc-900/80 to-indigo-950/10 border border-brand-border pt-12 flex flex-col md:flex-row md:items-center justify-between gap-6 reveal-element">
+                        <div class="space-y-3">
+                            <h2 class="text-2xl font-extrabold tracking-tight text-zinc-100 flex items-center gap-3">
+                                <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-brands fa-medium"></i></span>
+                                Medium Articles
+                            </h2>
+                            <p class="text-zinc-400 text-sm leading-relaxed max-w-xl">
+                                I write about AI, Python, and backend development on Medium. Check out my latest articles and insights.
+                            </p>
+                        </div>
+                        <div class="flex-shrink-0">
+                            <a href="https://medium.com/@muhammadsohail3542" class="inline-flex items-center justify-center w-full md:w-auto px-6 py-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-brand-border hover:border-zinc-700 text-zinc-100 font-medium transition-all duration-200" target="_blank" rel="noopener noreferrer">
+                                Read on Medium <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs text-brand-500"></i>
+                            </a>
+                        </div>
+                    </section>
+
+                    <!-- SECTION 5: Contact -->
+                    <section id="contact" class="space-y-8 border-t border-brand-border pt-12 pb-16 reveal-element">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                            <div class="md:col-span-5 space-y-4">
+                                <h2 class="text-2xl font-extrabold tracking-tight text-zinc-100 flex items-center gap-3">
+                                    <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-solid fa-paper-plane"></i></span>
+                                    Contact Info
+                                </h2>
+                                <p class="text-zinc-400 text-sm leading-relaxed">
+                                    I'm always open to discussing new AI projects, backend challenges, or collaboration opportunities. Feel free to reach out!
+                                </p>
+                            </div>
+                            <div class="md:col-span-7 flex flex-col justify-center">
+                                <ul class="contact space-y-4">
+                                    <li class="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/40 border border-brand-border hover:border-brand-500/20 transition-all duration-300">
+                                        <span class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/20 text-brand-500">
+                                            <i class="fa-solid fa-envelope"></i>
+                                        </span>
+                                        <a href="mailto:muhammadsohail3542@gmail.com" class="text-zinc-200 hover:text-brand-500 transition-colors font-medium break-all">
+                                            muhammadsohail3542@gmail.com
+                                        </a>
+                                    </li>
+                                    <li class="flex items-center gap-4 p-4 rounded-xl bg-zinc-900/40 border border-brand-border hover:border-brand-500/20 transition-all duration-300">
+                                        <span class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/20 text-brand-500">
+                                            <i class="fa-solid fa-location-dot"></i>
+                                        </span>
+                                        <span class="text-zinc-200 font-medium">
+                                            Lahore, Punjab, Pakistan
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+
+            <!-- Sidebar Menu Area (Sticky Left Side on Large screens, absolute drawer sliding from left on mobile) -->
+            <div id="sidebar" class="fixed top-0 left-0 h-full w-[300px] bg-brand-dark lg:bg-zinc-950/40 border-r border-brand-border glass-panel z-40 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+                <div class="inner h-full flex flex-col justify-between p-8 pt-20 lg:pt-12 overflow-y-auto">
+
+                    <!-- Navigation Menu -->
+                    <nav id="menu" class="space-y-6">
+                        <header class="major pb-4 border-b border-brand-border">
+                            <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-500">Navigation Menu</h2>
+                        </header>
+                        <ul class="space-y-3">
+                            <li><a href="#banner" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-brand-500/10 hover:text-brand-500 text-zinc-300 transition-all font-medium"><i class="fa-solid fa-user text-sm"></i> About Me</a></li>
+                            <li><a href="#skills" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-brand-500/10 hover:text-brand-500 text-zinc-300 transition-all font-medium"><i class="fa-solid fa-lightbulb text-sm"></i> Technical Skills</a></li>
+                            <li><a href="#projects" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-brand-500/10 hover:text-brand-500 text-zinc-300 transition-all font-medium"><i class="fa-solid fa-folder text-sm"></i> Projects</a></li>
+                            <li><a href="#articles" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-brand-500/10 hover:text-brand-500 text-zinc-300 transition-all font-medium"><i class="fa-brands fa-medium text-sm"></i> Medium Articles</a></li>
+                            <li><a href="#contact" class="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-brand-500/10 hover:text-brand-500 text-zinc-300 transition-all font-medium"><i class="fa-solid fa-envelope text-sm"></i> Contact Info</a></li>
+                        </ul>
+                    </nav>
+
+                    <!-- Sidebar Contact Details & Footer inside Drawer -->
+                    <div class="space-y-6 pt-8 border-t border-brand-border">
                         <section class="space-y-3">
-                            <p class="text-[10px] font-semibold uppercase tracking-widest text-zinc-500 px-1">Connect Karo</p>
-                            <ul class="space-y-2 text-xs text-zinc-400">
-                                <li class="flex items-center gap-2.5 hover:text-zinc-200 transition-colors">
+                            <header class="major">
+                                <h2 class="text-xs font-semibold uppercase tracking-widest text-zinc-500">Get in touch</h2>
+                            </header>
+                            <p class="text-xs text-zinc-400 leading-relaxed">
+                                I'm always open to discussing new AI projects, backend challenges, or collaboration opportunities. Feel free to reach out!
+                            </p>
+                            <ul class="contact space-y-2 text-xs">
+                                <li class="flex items-center gap-2 text-zinc-300">
                                     <i class="fa-solid fa-envelope text-brand-500"></i> 
-                                    <a href="mailto:muhammadsohail3542@gmail.com" class="break-all">muhammadsohail3542@gmail.com</a>
+                                    <a href="mailto:muhammadsohail3542@gmail.com" class="hover:underline break-all">muhammadsohail3542@gmail.com</a>
                                 </li>
-                                <li class="flex items-center gap-2.5">
+                                <li class="flex items-center gap-2 text-zinc-300">
                                     <i class="fa-solid fa-location-dot text-brand-500"></i>
                                     <span>Lahore, Punjab, Pakistan</span>
                                 </li>
                             </ul>
                         </section>
 
-                        <div class="flex items-center gap-3.5 pt-2 text-zinc-400 border-t border-brand-border">
-                            <a href="https://github.com/SohailArif313" target="_blank" rel="noopener noreferrer" class="hover:text-brand-500 transition-colors text-base"><i class="fa-brands fa-github"></i></a>
-                            <a href="https://www.linkedin.com/in/muhammad-sohail-316279397/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-500 transition-colors text-base"><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="https://medium.com/@muhammadsohail3542" target="_blank" rel="noopener noreferrer" class="hover:text-brand-500 transition-colors text-base"><i class="fa-brands fa-medium"></i></a>
-                            <a href="https://x.com/SohailArif313" target="_blank" rel="noopener noreferrer" class="hover:text-brand-500 transition-colors text-base"><i class="fa-brands fa-x-twitter"></i></a>
-                        </div>
-
-                        <footer class="text-zinc-600 text-[10px] tracking-wide pt-1">
+                        <!-- Footer -->
+                        <footer id="footer" class="pt-2 text-zinc-600 text-[10px] tracking-wide">
                             <p class="copyright">&copy; Muhammad Sohail. All rights reserved.</p>
                         </footer>
                     </div>
 
                 </div>
-            </aside>
-
-            <!-- Sidebar Backdrop for Mobile Screens -->
-            <div id="sidebar-backdrop" class="fixed inset-0 bg-zinc-950/80 backdrop-blur-sm z-30 hidden lg:hidden"></div>
-
-            <!-- Main Interactive Page Render Area -->
-            <main class="flex-1 w-full lg:ml-[300px] min-h-screen flex flex-col justify-between">
-                
-                <div class="max-w-4xl w-full mx-auto px-6 py-10 md:px-12 md:py-16">
-
-                    <!-- Header Segment -->
-                    <header class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 mb-8 border-b border-brand-border">
-                        <div class="logo text-xl font-extrabold tracking-tight">
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-indigo-400">Sohail's</span> Portfolio
-                        </div>
-                        <ul class="flex items-center gap-4 text-zinc-400 text-sm">
-                            <li><a href="https://github.com/SohailArif313" class="hover:text-brand-500 transition-colors duration-200" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a></li>
-                            <li><a href="https://www.linkedin.com/in/muhammad-sohail-316279397/" class="hover:text-brand-500 transition-colors duration-200" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                            <li><a href="https://medium.com/@muhammadsohail3542" class="hover:text-brand-500 transition-colors duration-200" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-medium"></i></a></li>
-                            <li><a href="https://x.com/SohailArif313" class="hover:text-brand-500 transition-colors duration-200" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a></li>
-                        </ul>
-                    </header>
-
-                    <!-- ================= PAGE 1: HOME PAGE ================= -->
-                    <div id="page-home" class="page-view active-page space-y-12">
-                        <section class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
-                            <div class="md:col-span-7 space-y-6">
-                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-500 text-xs font-semibold uppercase tracking-wider">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"></span> Open for Collaborations
-                                </div>
-                                <div class="space-y-3">
-                                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-none text-zinc-100">
-                                        Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 via-indigo-400 to-blue-400">Muhammad Sohail</span>
-                                    </h1>
-                                    <p class="text-lg sm:text-xl font-semibold text-zinc-300">AI Developer & Backend Engineer</p>
-                                </div>
-                                <p class="text-zinc-400 text-base leading-relaxed">
-                                    I build modern, scalable backend networks and intelligent automation workflows. Transforming messy data structures and manual pipelines into high-performance cloud assets is what I do.
-                                </p>
-                                <div class="flex flex-wrap gap-4 pt-2">
-                                    <button onclick="navigateTo('projects')" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 text-white font-medium hover:from-brand-500 hover:to-indigo-500 shadow-lg shadow-brand-500/15 hover:shadow-brand-500/25 transform hover:-translate-y-0.5 transition-all duration-200">
-                                        Explore My Work <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
-                                    </button>
-                                    <button onclick="navigateTo('contact')" class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-zinc-900 border border-brand-border text-zinc-300 hover:text-white hover:bg-zinc-800 transition-all font-medium">
-                                        Contact Me
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div class="md:col-span-5 flex justify-center md:justify-end">
-                                <div class="relative group">
-                                    <div class="absolute -inset-1.5 bg-gradient-to-r from-brand-500 to-indigo-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
-                                    <div class="relative rounded-2xl overflow-hidden bg-zinc-900 border border-brand-border w-[280px] h-[320px]">
-                                        <!-- Profile placeholder fallback image -->
-                                        <img src="images/my-photo.jpg" 
-                                             alt="Muhammad Sohail" 
-                                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=280&h=320&q=80';" />
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-
-                        <!-- Highlights Quick Stats Grid -->
-                        <section class="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-8 border-t border-brand-border">
-                            <div class="p-5 rounded-2xl bg-zinc-900/30 border border-brand-border">
-                                <span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-brand-500/10 text-brand-500 mb-3">
-                                    <i class="fa-solid fa-brain"></i>
-                                </span>
-                                <h4 class="font-bold text-zinc-200 mb-1">AI Pipelines</h4>
-                                <p class="text-zinc-400 text-xs leading-relaxed">RAG pipelines dhoondne, embedding vectors banane aur raw documents convert karne me maharat.</p>
-                            </div>
-                            <div class="p-5 rounded-2xl bg-zinc-900/30 border border-brand-border">
-                                <span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-brand-500/10 text-brand-500 mb-3">
-                                    <i class="fa-solid fa-server"></i>
-                                </span>
-                                <h4 class="font-bold text-zinc-200 mb-1">Reliable APIs</h4>
-                                <p class="text-zinc-400 text-xs leading-relaxed">Asynchronous microservices design karne ke liye FastAPI aur Flask framework par mukammal grip.</p>
-                            </div>
-                            <div class="p-5 rounded-2xl bg-zinc-900/30 border border-brand-border">
-                                <span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-brand-500/10 text-brand-500 mb-3">
-                                    <i class="fa-solid fa-database"></i>
-                                </span>
-                                <h4 class="font-bold text-zinc-200 mb-1">Data Harvesting</h4>
-                                <p class="text-zinc-400 text-xs leading-relaxed">Custom scrapers aur ETL systems jo unstructured data ko automatically parse aur database me store karein.</p>
-                            </div>
-                        </section>
-                    </div>
-
-                    <!-- ================= PAGE 2: ABOUT ME PAGE ================= -->
-                    <div id="page-about" class="page-view space-y-12">
-                        <header>
-                            <h2 class="text-3xl font-extrabold tracking-tight text-zinc-100 flex items-center gap-3">
-                                <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-solid fa-user"></i></span>
-                                About Me
-                            </h2>
-                            <p class="text-zinc-400 text-sm mt-2">Mera back story, technology ke sath safar aur development principles.</p>
-                        </header>
-
-                        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-                            <div class="md:col-span-7 space-y-6">
-                                <h3 class="text-xl font-bold text-zinc-200">Who is Sohail?</h3>
-                                <p class="text-zinc-400 text-sm leading-relaxed">
-                                    Main Lahore, Punjab, Pakistan se taalluq rakhne wala aik software engineer aur developer hoon jo smart systems design karna pasand karta hai. Mera real focus high-quality AI automation aur solid backend data models par hai.
-                                </p>
-                                <p class="text-zinc-400 text-sm leading-relaxed">
-                                    Complex codes ko bilkul clear structure me transform karna meri habit hai. Python aur SQL databases par continuous research aur implementations ke sath maine multiple systems ko optimize kiya hai.
-                                </p>
-                                <div class="p-5 rounded-2xl bg-brand-500/5 border border-brand-500/10 space-y-2">
-                                    <h4 class="text-sm font-bold text-brand-500 flex items-center gap-2">
-                                        <i class="fa-solid fa-code"></i> Coding Standards
-                                    </h4>
-                                    <p class="text-zinc-400 text-xs leading-relaxed">
-                                        Mujhe aisi systems banana pasand hain jo asani se readable, fast responsive, aur memory configurations me behad responsive hon taake future scalings me asani ho.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="md:col-span-5 space-y-6">
-                                <div class="p-6 rounded-2xl bg-zinc-900/40 border border-brand-border space-y-4">
-                                    <h4 class="font-bold text-zinc-300 border-b border-zinc-800 pb-2 text-xs uppercase tracking-wider">My Core Pillars</h4>
-                                    <div class="space-y-3">
-                                        <div class="space-y-1">
-                                            <h5 class="text-xs font-semibold text-zinc-200">1. Modular Code</h5>
-                                            <p class="text-zinc-400 text-[11px] leading-normal">Code ko separate files aur small functions me break karna taake debugging me asani ho.</p>
-                                        </div>
-                                        <div class="space-y-1">
-                                            <h5 class="text-xs font-semibold text-zinc-200">2. Data Safety</h5>
-                                            <p class="text-zinc-400 text-[11px] leading-normal">Pydantic validation layers ke zariye api incoming schemas ko filter aur sanitise karna.</p>
-                                        </div>
-                                        <div class="space-y-1">
-                                            <h5 class="text-xs font-semibold text-zinc-200">3. High Coverage</h5>
-                                            <p class="text-zinc-400 text-[11px] leading-normal">Har model aur endpoint ke automated checks aur test scenarios likhna.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Professional Progression Timeline -->
-                        <section class="space-y-6 border-t border-brand-border pt-10">
-                            <h3 class="text-xl font-bold text-zinc-200 flex items-center gap-2">
-                                <i class="fa-solid fa-briefcase text-brand-500 text-sm"></i> Education & Experience Timeline
-                            </h3>
-                            <div class="relative border-l border-zinc-800 ml-4 pl-6 space-y-8">
-                                <div class="relative">
-                                    <span class="absolute -left-[31px] top-1.5 w-4.5 h-4.5 rounded-full bg-zinc-950 border-2 border-brand-500 flex items-center justify-center">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                                    </span>
-                                    <span class="text-xs text-brand-500 font-semibold">2024 - Present</span>
-                                    <h4 class="text-base font-bold text-zinc-200 mt-0.5">Freelance AI & Backend Architect</h4>
-                                    <p class="text-zinc-400 text-xs mt-2 leading-relaxed">International clients ke liye data pipeline structure deploy kar raha hoon. FastAPI microservices aur database schema setups optimized kar raha hoon.</p>
-                                </div>
-                                <div class="relative">
-                                    <span class="absolute -left-[31px] top-1.5 w-4.5 h-4.5 rounded-full bg-zinc-950 border-2 border-brand-500 flex items-center justify-center">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                                    </span>
-                                    <span class="text-xs text-brand-500 font-semibold">2022 - 2024</span>
-                                    <h4 class="text-base font-bold text-zinc-200 mt-0.5">Data Analyst & Automation Lead</h4>
-                                    <p class="text-zinc-400 text-xs mt-2 leading-relaxed">Lahore local industry me datasets parsing aur database maintenance perform ki. Auto-scrapers deploy kiye.</p>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-
-                    <!-- ================= PAGE 3: TECHNICAL SKILLS ================= -->
-                    <div id="page-skills" class="page-view space-y-12">
-                        <header>
-                            <h2 class="text-3xl font-extrabold tracking-tight text-zinc-100 flex items-center gap-3">
-                                <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-solid fa-cubes"></i></span>
-                                Technical Skills
-                            </h2>
-                            <p class="text-zinc-400 text-sm mt-2">Jin tools aur technologies ka use kar ke main real-world solution design karta hoon.</p>
-                        </header>
-
-                        <!-- Features lists -->
-                        <div class="features grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <article class="p-6 rounded-2xl bg-zinc-900/40 border border-brand-border hover:border-brand-500/20 transition-all group">
-                                <div class="flex items-start gap-4">
-                                    <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 text-xl">
-                                        <i class="fa-solid fa-database"></i>
-                                    </span>
-                                    <div>
-                                        <h3 class="text-lg font-bold text-zinc-100">Data Engineering & Analytics</h3>
-                                        <p class="text-zinc-400 text-xs leading-relaxed mt-1">Python frameworks (Pandas, Numpy) ke dynamic use se heavy datasets ko clean, aggregate, aur model input k liye ready karna.</p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="p-6 rounded-2xl bg-zinc-900/40 border border-brand-border hover:border-brand-500/20 transition-all group">
-                                <div class="flex items-start gap-4">
-                                    <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 text-xl">
-                                        <i class="fa-solid fa-bolt"></i>
-                                    </span>
-                                    <div>
-                                        <h3 class="text-lg font-bold text-zinc-100">FastAPI & Flask API System</h3>
-                                        <p class="text-zinc-400 text-xs leading-relaxed mt-1">Multi-threaded API systems, authorization middlewares, CORS configs, aur secure endpoints creation.</p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="p-6 rounded-2xl bg-zinc-900/40 border border-brand-border hover:border-brand-500/20 transition-all group">
-                                <div class="flex items-start gap-4">
-                                    <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 text-xl">
-                                        <i class="fa-solid fa-file-pdf"></i>
-                                    </span>
-                                    <div>
-                                        <h3 class="text-lg font-bold text-zinc-100">Unstructured Document Parsers</h3>
-                                        <p class="text-zinc-400 text-xs leading-relaxed mt-1">Difficult format PDFs, scanned sheets aur custom reports se raw tables dhoond kar structure JSONs banana.</p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="p-6 rounded-2xl bg-zinc-900/40 border border-brand-border hover:border-brand-500/20 transition-all group">
-                                <div class="flex items-start gap-4">
-                                    <span class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-xl bg-brand-500/10 text-brand-500 text-xl">
-                                        <i class="fa-solid fa-cloud-arrow-down"></i>
-                                    </span>
-                                    <div>
-                                        <h3 class="text-lg font-bold text-zinc-100">Automation Scrapers</h3>
-                                        <p class="text-zinc-400 text-xs leading-relaxed mt-1">Celery aur Redis queues use karke background scheduled scripts run karna jo daily information extract karein.</p>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-
-                        <!-- Progress Bar Metrics -->
-                        <section class="space-y-6 border-t border-brand-border pt-10">
-                            <h3 class="text-xl font-bold text-zinc-200">Tools Mastery Levels</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
-                                <div class="space-y-1.5">
-                                    <div class="flex justify-between text-xs font-semibold">
-                                        <span class="text-zinc-300">Python (Data Engineering Frameworks)</span>
-                                        <span class="text-brand-500">95%</span>
-                                    </div>
-                                    <div class="w-full h-2 rounded-full bg-zinc-900 overflow-hidden">
-                                        <div class="h-full bg-brand-500 rounded-full" style="width: 95%"></div>
-                                    </div>
-                                </div>
-                                <div class="space-y-1.5">
-                                    <div class="flex justify-between text-xs font-semibold">
-                                        <span class="text-zinc-300">FastAPI & Microservices Architecture</span>
-                                        <span class="text-brand-500">90%</span>
-                                    </div>
-                                    <div class="w-full h-2 rounded-full bg-zinc-900 overflow-hidden">
-                                        <div class="h-full bg-brand-500 rounded-full" style="width: 90%"></div>
-                                    </div>
-                                </div>
-                                <div class="space-y-1.5">
-                                    <div class="flex justify-between text-xs font-semibold">
-                                        <span class="text-zinc-300">Document Parsers & Data Cleaners</span>
-                                        <span class="text-brand-500">92%</span>
-                                    </div>
-                                    <div class="w-full h-2 rounded-full bg-zinc-900 overflow-hidden">
-                                        <div class="h-full bg-brand-500 rounded-full" style="width: 92%"></div>
-                                    </div>
-                                </div>
-                                <div class="space-y-1.5">
-                                    <div class="flex justify-between text-xs font-semibold">
-                                        <span class="text-zinc-300">SQL Schema & Data Modeling</span>
-                                        <span class="text-brand-500">85%</span>
-                                    </div>
-                                    <div class="w-full h-2 rounded-full bg-zinc-900 overflow-hidden">
-                                        <div class="h-full bg-brand-500 rounded-full" style="width: 85%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-
-                    <!-- ================= PAGE 4: PROJECTS PAGE ================= -->
-                    <div id="page-projects" class="page-view space-y-12">
-                        <header class="space-y-4">
-                            <div>
-                                <h2 class="text-3xl font-extrabold tracking-tight text-zinc-100 flex items-center gap-3">
-                                    <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-solid fa-folder-open"></i></span>
-                                    Featured Projects
-                                </h2>
-                                <p class="text-zinc-400 text-sm mt-2">Wo solid tools aur applications jo maine scratch se build ki hain.</p>
-                            </div>
-
-                            <!-- Filter Controls -->
-                            <div class="flex flex-col sm:flex-row gap-4 pt-2">
-                                <div class="relative flex-1">
-                                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-zinc-500 text-sm"></i>
-                                    <input
-                                        type="text"
-                                        id="project-search-input"
-                                        placeholder="Search products by framework name..."
-                                        class="w-full pl-11 pr-4 py-3 rounded-xl bg-zinc-900 border border-brand-border text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-brand-500 transition-colors"
-                                    />
-                                </div>
-                                <div class="flex gap-2" id="project-filter-container">
-                                    <button onclick="filterProjects('all')" class="proj-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition-all border bg-brand-500/15 border-brand-500 text-brand-400">All Work</button>
-                                    <button onclick="filterProjects('data')" class="proj-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition-all border bg-zinc-900 border-brand-border text-zinc-400 hover:text-zinc-200">Data Engineering</button>
-                                    <button onclick="filterProjects('backend')" class="proj-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition-all border bg-zinc-900 border-brand-border text-zinc-400 hover:text-zinc-200">APIs</button>
-                                </div>
-                            </div>
-                        </header>
-
-                        <!-- Projects Cards Grid -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
-                            
-                            <!-- Project Item 1 -->
-                            <article data-category="data" class="proj-card flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-800 hover:shadow-xl transition-all duration-300 group">
-                                <div class="aspect-video w-full bg-zinc-850 overflow-hidden relative">
-                                    <img src="images/netflix-data-insights-1990s.jpg" 
-                                         alt="Netflix Data Insights" 
-                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1574375927938-d5a98e8fed85?auto=format&fit=crop&w=600&q=80';" />
-                                </div>
-                                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-                                    <div class="space-y-2">
-                                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-500 transition-colors">Netflix Data Insights (1990s)</h3>
-                                        <p class="text-zinc-400 text-xs leading-relaxed">Performed exploratory data analysis on Netflix dataset to uncover trends, content distribution, and insights from the 1990s.</p>
-                                    </div>
-                                    <div class="space-y-3">
-                                        <div class="flex flex-wrap gap-1">
-                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Python</span>
-                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Pandas</span>
-                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Seaborn</span>
-                                        </div>
-                                        <div class="flex items-center justify-between text-xs pt-2 border-t border-zinc-900">
-                                            <button onclick="openProjectModal('netflix')" class="text-brand-500 font-bold hover:underline">Read Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
-                                            <a href="https://github.com/SohailArif313/Netflix_Analysis_1990s" target="_blank" rel="noopener" class="text-zinc-500 hover:text-zinc-300"><i class="fa-brands fa-github"></i> Source</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <!-- Project Item 2 -->
-                            <article data-category="data" class="proj-card flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-800 hover:shadow-xl transition-all duration-300 group">
-                                <div class="aspect-video w-full bg-zinc-850 overflow-hidden relative">
-                                    <img src="images/nobel_prize.jpg" 
-                                         alt="Nobel Prize Analysis" 
-                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80';" />
-                                </div>
-                                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-                                    <div class="space-y-2">
-                                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-500 transition-colors">Nobel Prize Analysis</h3>
-                                        <p class="text-zinc-400 text-xs leading-relaxed">Analyzed Nobel Prize winners dataset using Python to visualize trends, country distribution, and gender diversity over 100+ years.</p>
-                                    </div>
-                                    <div class="space-y-3">
-                                        <div class="flex flex-wrap gap-1">
-                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Python</span>
-                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Numpy</span>
-                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Plotly</span>
-                                        </div>
-                                        <div class="flex items-center justify-between text-xs pt-2 border-t border-zinc-900">
-                                            <button onclick="openProjectModal('nobel')" class="text-brand-500 font-bold hover:underline">Read Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
-                                            <a href="https://github.com/SohailArif313/nobel_prize_analysis" target="_blank" rel="noopener" class="text-zinc-500 hover:text-zinc-300"><i class="fa-brands fa-github"></i> Source</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <!-- Project Item 3 -->
-                            <article data-category="data" class="proj-card flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-800 hover:shadow-xl transition-all duration-300 group">
-                                <div class="aspect-video w-full bg-zinc-850 overflow-hidden relative">
-                                    <img src="images/nyc_sat_analysis.jpg" 
-                                         alt="NYC Schools SAT Analysis" 
-                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=600&q=80';" />
-                                </div>
-                                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-                                    <div class="space-y-2">
-                                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-500 transition-colors">NYC Schools SAT Analysis</h3>
-                                        <p class="text-zinc-400 text-xs leading-relaxed">A detailed analysis of SAT performance across New York City high schools using Python, highlighting score patterns across boroughs.</p>
-                                    </div>
-                                    <div class="space-y-3">
-                                        <div class="flex flex-wrap gap-1">
-                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Python</span>
-                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Matplotlib</span>
-                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Analysis</span>
-                                        </div>
-                                        <div class="flex items-center justify-between text-xs pt-2 border-t border-zinc-900">
-                                            <button onclick="openProjectModal('nyc-sat')" class="text-brand-500 font-bold hover:underline">Read Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
-                                            <a href="https://github.com/SohailArif313/nyc_schools_sat_analysis" target="_blank" rel="noopener" class="text-zinc-500 hover:text-zinc-300"><i class="fa-brands fa-github"></i> Source</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <!-- Project Item 4 -->
-                            <article data-category="backend" class="proj-card flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-800 hover:shadow-xl transition-all duration-300 group">
-                                <div class="aspect-video w-full bg-zinc-850 overflow-hidden relative">
-                                    <img src="./images/customer-analytics-data-prep.jpg" 
-                                         alt="Customer Analytics Data Prep" 
-                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80';" />
-                                </div>
-                                <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
-                                    <div class="space-y-2">
-                                        <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-500 transition-colors">Customer Analytics Data Prep</h3>
-                                        <p class="text-zinc-400 text-xs leading-relaxed">Processed large-scale customer datasets by optimizing data types, reducing memory usage, and preparing clean features.</p>
-                                    </div>
-                                    <div class="space-y-3">
-                                        <div class="flex flex-wrap gap-1">
-                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Data Prep</span>
-                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Optimization</span>
-                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Scikit-learn</span>
-                                        </div>
-                                        <div class="flex items-center justify-between text-xs pt-2 border-t border-zinc-900">
-                                            <button onclick="openProjectModal('customer-analytics')" class="text-brand-500 font-bold hover:underline">Read Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
-                                            <a href="https://github.com/SohailArif313/customer-analytics-data-prep" target="_blank" rel="noopener" class="text-zinc-500 hover:text-zinc-300"><i class="fa-brands fa-github"></i> Source</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-
-                        </div>
-                    </div>
-
-                    <!-- ================= PAGE 5: BLOGS PAGE ================= -->
-                    <div id="page-blogs" class="page-view space-y-12">
-                        <header class="space-y-4">
-                            <div>
-                                <h2 class="text-3xl font-extrabold tracking-tight text-zinc-100 flex items-center gap-3">
-                                    <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-solid fa-feather"></i></span>
-                                    Medium Articles
-                                </h2>
-                                <p class="text-zinc-400 text-sm mt-2">Main Medium aur professional blogs par technology topics par likhta rehta hoon.</p>
-                            </div>
-                        </header>
-
-                        <!-- Blogroll stack -->
-                        <div class="space-y-6">
-                            
-                            <!-- Blog Item 1 -->
-                            <article class="p-6 rounded-2xl bg-zinc-900/30 border border-brand-border hover:border-zinc-800 transition-all cursor-pointer group flex flex-col sm:flex-row justify-between gap-6" onclick="openBlogModal('blog-1')">
-                                <div class="space-y-3 flex-1">
-                                    <div class="flex items-center gap-2 text-[10px] font-bold text-zinc-500">
-                                        <span class="px-2 py-0.5 rounded bg-zinc-900 border border-brand-border text-brand-500">Data Engineering</span>
-                                        <span>&bull;</span>
-                                        <span>May 12, 2026</span>
-                                        <span>&bull;</span>
-                                        <span>6 min read</span>
-                                    </div>
-                                    <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-500 transition-colors">Mastering Unstructured Data: How to Clean Messy PDFs for AI Pipelines</h3>
-                                    <p class="text-zinc-400 text-xs leading-relaxed">Learn how to design robust Python algorithms to extract clean structural text from unformatted PDFs for vector search systems.</p>
-                                    <span class="inline-flex items-center gap-1.5 text-xs text-brand-500 font-bold group-hover:translate-x-1 transition-transform pt-1">
-                                        Read Full Article <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                                    </span>
-                                </div>
-                            </article>
-
-                            <!-- Blog Item 2 -->
-                            <article class="p-6 rounded-2xl bg-zinc-900/30 border border-brand-border hover:border-zinc-800 transition-all cursor-pointer group flex flex-col sm:flex-row justify-between gap-6" onclick="openBlogModal('blog-2')">
-                                <div class="space-y-3 flex-1">
-                                    <div class="flex items-center gap-2 text-[10px] font-bold text-zinc-500">
-                                        <span class="px-2 py-0.5 rounded bg-zinc-900 border border-brand-border text-brand-500">Backend Dev</span>
-                                        <span>&bull;</span>
-                                        <span>April 28, 2026</span>
-                                        <span>&bull;</span>
-                                        <span>4 min read</span>
-                                    </div>
-                                    <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-500 transition-colors">Why FastAPI is the Go-To Framework for AI Model Deployment</h3>
-                                    <p class="text-zinc-400 text-xs leading-relaxed">Explore why asynchronous request handling and dynamic validation make FastAPI optimum for serving heavy statistical models.</p>
-                                    <span class="inline-flex items-center gap-1.5 text-xs text-brand-500 font-bold group-hover:translate-x-1 transition-transform pt-1">
-                                        Read Full Article <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                                    </span>
-                                </div>
-                            </article>
-
-                        </div>
-
-                        <!-- CTA card to read on Medium -->
-                        <div class="p-8 rounded-2xl bg-gradient-to-r from-zinc-900 to-indigo-950/15 border border-brand-border flex flex-col md:flex-row md:items-center justify-between gap-6">
-                            <div class="space-y-2">
-                                <h4 class="text-lg font-bold text-zinc-200">Want to explore all articles?</h4>
-                                <p class="text-zinc-400 text-xs leading-relaxed max-w-xl">I actively write step-by-step guides on Python optimizations, Celery architectures, and web automation on my Medium space.</p>
-                            </div>
-                            <a href="https://medium.com/@muhammadsohail3542" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-zinc-950 hover:bg-zinc-900 border border-brand-border text-xs font-bold text-zinc-200 gap-2">
-                                Go to Medium <i class="fa-solid fa-arrow-up-right-from-square text-brand-500"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- ================= PAGE 6: CONTACT PAGE ================= -->
-                    <div id="page-contact" class="page-view space-y-12">
-                        <header>
-                            <h2 class="text-3xl font-extrabold tracking-tight text-zinc-100 flex items-center gap-3">
-                                <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-solid fa-paper-plane"></i></span>
-                                Contact Details
-                            </h2>
-                            <p class="text-zinc-400 text-sm mt-2">Queries, consulting projects, and collaboration invites are always welcome.</p>
-                        </header>
-
-                        <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-                            <div class="md:col-span-5 space-y-6">
-                                <h3 class="text-lg font-bold text-zinc-200">Let's talk about solutions!</h3>
-                                <p class="text-zinc-400 text-xs leading-relaxed">
-                                    Agar aapko koi scraper setup karwana hai, custom data preprocessing system deploy karna hai ya model serving APIs create karni hain, feel free to fill this secure form.
-                                </p>
-
-                                <div class="space-y-3">
-                                    <div class="flex items-center gap-3 p-4 rounded-xl bg-zinc-900/40 border border-brand-border">
-                                        <span class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-brand-500/10 text-brand-500">
-                                            <i class="fa-solid fa-envelope"></i>
-                                        </span>
-                                        <div>
-                                            <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Email Address</p>
-                                            <a href="mailto:muhammadsohail3542@gmail.com" class="text-zinc-200 hover:text-brand-500 text-xs font-semibold break-all">muhammadsohail3542@gmail.com</a>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-3 p-4 rounded-xl bg-zinc-900/40 border border-brand-border">
-                                        <span class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-brand-500/10 text-brand-500">
-                                            <i class="fa-solid fa-location-dot"></i>
-                                        </span>
-                                        <div>
-                                            <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Office Location</p>
-                                            <span class="text-zinc-200 text-xs font-semibold">Lahore, Punjab, Pakistan</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="md:col-span-7">
-                                <div class="p-6 rounded-2xl bg-zinc-900/30 border border-brand-border space-y-6">
-                                    <h3 class="text-base font-bold text-zinc-200 flex items-center gap-2">
-                                        <i class="fa-solid fa-envelope-open-text text-brand-500"></i> Send a Direct Message
-                                    </h3>
-
-                                    <!-- Success Validation State -->
-                                    <div id="contact-success" class="hidden p-6 rounded-xl bg-brand-500/10 border border-brand-500/20 text-center space-y-3">
-                                        <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand-500/20 text-brand-400 text-xl">
-                                            <i class="fa-solid fa-circle-check"></i>
-                                        </div>
-                                        <h4 class="font-bold text-zinc-100">Message Received!</h4>
-                                        <p class="text-zinc-400 text-xs leading-relaxed">Thank you, Sohail will read your specifications and contact you back within 24 hours.</p>
-                                        <button onclick="resetContactForm()" class="text-xs text-brand-500 font-bold underline">Send another message</button>
-                                    </div>
-
-                                    <!-- Form Body -->
-                                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
-                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                            <div class="space-y-1">
-                                                <label class="text-[10px] font-semibold text-zinc-400 uppercase">Your Name *</label>
-                                                <input required type="text" id="form-name" placeholder="E.g. Ali Raza" class="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-brand-border text-xs text-zinc-200 focus:outline-none focus:border-brand-500 transition-colors" />
-                                            </div>
-                                            <div class="space-y-1">
-                                                <label class="text-[10px] font-semibold text-zinc-400 uppercase">Your Email *</label>
-                                                <input required type="email" id="form-email" placeholder="E.g. client@domain.com" class="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-brand-border text-xs text-zinc-200 focus:outline-none focus:border-brand-500 transition-colors" />
-                                            </div>
-                                        </div>
-                                        <div class="space-y-1">
-                                            <label class="text-[10px] font-semibold text-zinc-400 uppercase">Subject</label>
-                                            <input type="text" id="form-subject" placeholder="E.g. Database optimization task" class="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-brand-border text-xs text-zinc-200 focus:outline-none focus:border-brand-500 transition-colors" />
-                                        </div>
-                                        <div class="space-y-1">
-                                            <label class="text-[10px] font-semibold text-zinc-400 uppercase">Message details *</label>
-                                            <textarea required rows="4" id="form-message" placeholder="Provide description of task specs..." class="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-brand-border text-xs text-zinc-200 focus:outline-none focus:border-brand-500 transition-colors resize-none"></textarea>
-                                        </div>
-                                        <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition-all gap-2 cursor-pointer">
-                                            <i class="fa-solid fa-paper-plane"></i> Send Secure Message
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Footer that shows on all pages -->
-                <footer class="w-full py-6 px-6 md:px-12 border-t border-brand-border bg-zinc-950/60 mt-12">
-                    <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
-                        <p>&copy; 2026 Muhammad Sohail. All rights reserved.</p>
-                        <div class="flex gap-4">
-                            <button onclick="navigateTo('home')" class="hover:text-zinc-300">Home</button>
-                            <button onclick="navigateTo('about')" class="hover:text-zinc-300">About</button>
-                            <button onclick="navigateTo('skills')" class="hover:text-zinc-300">Skills</button>
-                            <button onclick="navigateTo('projects')" class="hover:text-zinc-300">Projects</button>
-                            <button onclick="navigateTo('blogs')" class="hover:text-zinc-300">Blogs</button>
-                            <button onclick="navigateTo('contact')" class="hover:text-zinc-300">Contact</button>
-                        </div>
-                    </div>
-                </footer>
-
-            </main>
-        </div>
-
-        <!-- ================= PROJECT DETAIL MODAL OVERLAY ================= -->
-        <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-sm hidden">
-            <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-zinc-900 border border-brand-border p-6 md:p-8 space-y-6">
-                <button onclick="closeProjectModal()" class="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-full bg-zinc-950 border border-brand-border hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <div class="aspect-video w-full rounded-xl overflow-hidden bg-zinc-850">
-                    <img id="modal-project-img" src="" alt="Project Image" class="w-full h-full object-cover" />
-                </div>
-                <div class="space-y-4">
-                    <h3 id="modal-project-title" class="text-xl md:text-2xl font-extrabold text-zinc-100"></h3>
-                    <p id="modal-project-desc" class="text-zinc-300 text-xs leading-relaxed"></p>
-                    <div class="space-y-2">
-                        <h4 class="text-xs font-bold text-zinc-400 uppercase tracking-widest">Technologies Used</h4>
-                        <div id="modal-project-techs" class="flex flex-wrap gap-1.5"></div>
-                    </div>
-                    <div class="flex gap-4 pt-4 border-t border-zinc-800">
-                        <a id="modal-project-link" href="#" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition-colors">
-                            <i class="fa-brands fa-github text-sm"></i> View Source Code
-                        </a>
-                        <button onclick="closeProjectModal()" class="px-5 py-2.5 rounded-xl bg-zinc-950 hover:bg-zinc-850 text-zinc-400 hover:text-zinc-200 text-xs font-bold transition-colors">
-                            Close
-                        </button>
-                    </div>
-                </div>
             </div>
+
         </div>
 
-        <!-- ================= BLOG DETAIL MODAL OVERLAY ================= -->
-        <div id="blog-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-sm hidden">
-            <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-zinc-900 border border-brand-border p-6 md:p-8 space-y-6">
-                <button onclick="closeBlogModal()" class="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-full bg-zinc-950 border border-brand-border hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <div class="space-y-4">
-                    <div class="flex items-center gap-2 text-xs text-zinc-500">
-                        <span id="modal-blog-category" class="px-2 py-0.5 rounded bg-zinc-950 text-brand-400 border border-brand-border font-bold uppercase text-[10px] tracking-widest"></span>
-                        <span>&bull;</span>
-                        <span id="modal-blog-date"></span>
-                    </div>
-                    <h3 id="modal-blog-title" class="text-xl md:text-2xl font-extrabold text-zinc-100"></h3>
-                    <div id="modal-blog-content" class="text-zinc-300 text-xs leading-relaxed space-y-4 pt-4 border-t border-zinc-800 whitespace-pre-line"></div>
-                    <div class="flex justify-between items-center pt-6 border-t border-zinc-800">
-                        <a href="https://medium.com/@muhammadsohail3542" target="_blank" class="inline-flex items-center gap-2 text-xs text-brand-400 font-bold hover:underline">
-                            Follow on Medium <i class="fa-brands fa-medium text-sm"></i>
-                        </a>
-                        <button onclick="closeBlogModal()" class="px-4 py-2 rounded-xl bg-zinc-950 hover:bg-zinc-850 text-zinc-400 text-xs font-bold transition-colors">
-                            Close Reader
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pure Javascript Navigation Aur Interactive Control Logic -->
+        <!-- Modern, Lightweight Script Logic (Replacing bulky jQuery templates) -->
         <script>
             // Elements
             const sidebar = document.getElementById('sidebar');
             const sidebarToggle = document.getElementById('sidebar-toggle');
             const toggleIcon = document.getElementById('toggle-icon');
-            const sidebarBackdrop = document.getElementById('sidebar-backdrop');
-            const navButtons = document.querySelectorAll('.nav-btn');
-            const pageViews = document.querySelectorAll('.page-view');
+            const menuLinks = document.querySelectorAll('#menu a');
 
-            // 1. Mobile Sidebar Controls
-            function toggleMobileSidebar(forceClose = false) {
+            // Toggle Sidebar Menu (Responsive Mobile Drawer - sliding from left)
+            sidebarToggle.addEventListener('click', () => {
                 const isOpen = sidebar.classList.contains('translate-x-0');
-                if (isOpen || forceClose) {
+                if (isOpen) {
                     sidebar.classList.remove('translate-x-0');
                     sidebar.classList.add('-translate-x-full');
-                    sidebarBackdrop.classList.add('hidden');
-                    toggleIcon.className = 'fa-solid fa-bars text-lg';
+                    toggleIcon.className = 'fa-solid fa-bars text-xl';
                 } else {
                     sidebar.classList.remove('-translate-x-full');
                     sidebar.classList.add('translate-x-0');
-                    sidebarBackdrop.classList.remove('hidden');
-                    toggleIcon.className = 'fa-solid fa-xmark text-lg';
+                    toggleIcon.className = 'fa-solid fa-xmark text-xl';
                 }
-            }
-            
-            sidebarToggle.addEventListener('click', () => toggleMobileSidebar());
-            sidebarBackdrop.addEventListener('click', () => toggleMobileSidebar(true));
-
-            // 2. Multi-Page Navigation Logic (Single page show-hide system)
-            function navigateTo(pageId) {
-                // Pehle page transition effect apply karein
-                pageViews.forEach(view => {
-                    view.classList.remove('active-page');
-                });
-
-                // Targeted page show karein
-                const targetPage = document.getElementById('page-' + pageId);
-                if (targetPage) {
-                    setTimeout(() => {
-                        targetPage.classList.add('active-page');
-                    }, 50);
-                }
-
-                // Sidebar buttons active state highlight karein
-                navButtons.forEach(btn => {
-                    const pageAttr = btn.getAttribute('data-page');
-                    if (pageAttr === pageId) {
-                        btn.className = "nav-btn w-full flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 text-sm font-medium text-brand-500 bg-brand-500/10 border-l-4 border-brand-500 pl-3";
-                    } else {
-                        btn.className = "nav-btn w-full flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 text-sm font-medium text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200";
-                    }
-                });
-
-                // Scroll to top automatically
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-
-                // Mobile drawer close karein
-                toggleMobileSidebar(true);
-            }
-
-            // 3. Projects Category Filter and Search
-            const projectSearchInput = document.getElementById('project-search-input');
-            const projCards = document.querySelectorAll('.proj-card');
-
-            function filterProjects(category) {
-                // Update active filter button designs
-                const filterBtns = document.querySelectorAll('#project-filter-container button');
-                filterBtns.forEach(btn => {
-                    if (btn.innerText.toLowerCase().includes(category === 'all' ? 'all' : category)) {
-                        btn.className = "proj-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition-all border bg-brand-500/15 border-brand-500 text-brand-400";
-                    } else {
-                        btn.className = "proj-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition-all border bg-zinc-900 border-brand-border text-zinc-400 hover:text-zinc-200";
-                    }
-                });
-
-                applyFilters(category, projectSearchInput.value);
-            }
-
-            projectSearchInput.addEventListener('input', () => {
-                const activeTab = document.querySelector('#project-filter-container .text-brand-400').innerText.toLowerCase();
-                let category = 'all';
-                if (activeTab.includes('data')) category = 'data';
-                if (activeTab.includes('api')) category = 'backend';
-                applyFilters(category, projectSearchInput.value);
             });
 
-            function applyFilters(category, searchQuery) {
-                projCards.forEach(card => {
-                    const cardCategory = card.getAttribute('data-category');
-                    const cardTitle = card.querySelector('h3').innerText.toLowerCase();
-                    const cardDesc = card.querySelector('p').innerText.toLowerCase();
-                    
-                    const matchesCategory = (category === 'all') || (cardCategory === category);
-                    const matchesSearch = cardTitle.includes(searchQuery.toLowerCase()) || cardDesc.includes(searchQuery.toLowerCase());
-
-                    if (matchesCategory && matchesSearch) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
+            // Close Sidebar Drawer on link click (Mobile)
+            menuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 1024) {
+                        sidebar.classList.add('-translate-x-full');
+                        sidebar.classList.remove('translate-x-0');
+                        toggleIcon.className = 'fa-solid fa-bars text-xl';
                     }
                 });
-            }
+            });
 
-            // 4. Modal Data Maps (Pure JS memory map)
-            const projectsData = {
-                'netflix': {
-                    title: 'Netflix Data Insights (1990s)',
-                    image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8fed85?auto=format&fit=crop&w=600&q=80',
-                    desc: 'This project is a detailed analysis tracking the historical content pipeline of Netflix during the 1990s. Using Pandas and Seaborn, we cleaned invalid null dates, visualized trends of content shifts from traditional networks to standalone releases, and calculated ratios for modern genres.',
-                    techs: ['Python', 'Pandas', 'Matplotlib', 'Seaborn'],
-                    link: 'https://github.com/SohailArif313/Netflix_Analysis_1990s'
-                },
-                'nobel': {
-                    title: 'Nobel Prize Analysis',
-                    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80',
-                    desc: 'A comprehensive study tracking Nobel laureates over multiple decades. The program cleans localized character sets, aggregates geographical ratios to dhoond who is leading in award density, and visualizes changing demographics (including ages and gender scales) clearly.',
-                    techs: ['Python', 'Numpy', 'Plotly', 'Matplotlib'],
-                    link: 'https://github.com/SohailArif313/nobel_prize_analysis'
-                },
-                'nyc-sat': {
-                    title: 'NYC Schools SAT Analysis',
-                    image: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=600&q=80',
-                    desc: 'Analyzing SAT performance across diverse boroughs of New York City. The algorithm resolves inconsistent demographic names, matches municipal coordinate systems to map areas, and determines the strong correlation elements that impact performance standards.',
-                    techs: ['Python', 'Pandas', 'Statistical Modeling'],
-                    link: 'https://github.com/SohailArif313/nyc_schools_sat_analysis'
-                },
-                'customer-analytics': {
-                    title: 'Customer Analytics Data Prep',
-                    image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80',
-                    desc: 'Designed dynamic clean scripts built for optimization of client pipelines. It downcasts numeric fields dynamically, scales categorical profiles smoothly, and optimizes standard deviation offsets to minimize database memory footprint up to 65%.',
-                    techs: ['Data Engineering', 'Memory Casts', 'Sklearn'],
-                    link: 'https://github.com/SohailArif313/customer-analytics-data-prep'
-                }
-            };
-
-            const blogsData = {
-                'blog-1': {
-                    title: 'Mastering Unstructured Data: How to Clean Messy PDFs for AI Pipelines',
-                    category: 'Data Engineering',
-                    date: 'May 12, 2026',
-                    content: `PDFs contain coordinates, not structural formats. When you parse unstructured files using traditional tools, lines frequently overlap and tables break.
-                    
-                    In this piece, we go through coordinate parsing filters that align paragraphs automatically, extract tabular grids perfectly into structured datasets, and format paragraphs ready for Vector databases in modern RAG systems.`
-                },
-                'blog-2': {
-                    title: 'Why FastAPI is the Go-To Framework for AI Model Deployment',
-                    category: 'Backend Dev',
-                    date: 'April 28, 2026',
-                    content: `AI workloads and heavy machine learning classifiers demand non-blocking async processes to preserve compute capacities. 
-                    
-                    FastAPI leverages ASGI standard architectures, enables Pydantic inputs validation out of the box, and provides auto-generated Swagger UI dashboards instantly.`
-                }
-            };
-
-            // Modal Trigger Functions
-            function openProjectModal(id) {
-                const data = projectsData[id];
-                if (!data) return;
-                document.getElementById('modal-project-title').innerText = data.title;
-                document.getElementById('modal-project-desc').innerText = data.desc;
-                document.getElementById('modal-project-img').src = data.image;
-                document.getElementById('modal-project-link').href = data.link;
-
-                const techCont = document.getElementById('modal-project-techs');
-                techCont.innerHTML = '';
-                data.techs.forEach(t => {
-                    const el = document.createElement('span');
-                    el.className = "px-3 py-1 rounded-md bg-zinc-950 text-zinc-400 text-xs border border-brand-border";
-                    el.innerText = t;
-                    techCont.appendChild(el);
+            // Smooth Intersection Observer animation triggers
+            const revealElements = document.querySelectorAll('.reveal-element');
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Animates once
+                    }
                 });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
 
-                document.getElementById('project-modal').classList.remove('hidden');
-            }
-
-            function closeProjectModal() {
-                document.getElementById('project-modal').classList.add('hidden');
-            }
-
-            function openBlogModal(id) {
-                const data = blogsData[id];
-                if (!data) return;
-                document.getElementById('modal-blog-title').innerText = data.title;
-                document.getElementById('modal-blog-category').innerText = data.category;
-                document.getElementById('modal-blog-date').innerText = data.date;
-                document.getElementById('modal-blog-content').innerText = data.content;
-
-                document.getElementById('blog-modal').classList.remove('hidden');
-            }
-
-            function closeBlogModal() {
-                document.getElementById('blog-modal').classList.add('hidden');
-            }
-
-            // 5. Direct Message Contact Form Logic
-            function handleFormSubmit(e) {
-                e.preventDefault();
-                document.getElementById('contact-form').classList.add('hidden');
-                document.getElementById('contact-success').classList.remove('hidden');
-            }
-
-            function resetContactForm() {
-                document.getElementById('contact-form').reset();
-                document.getElementById('contact-form').classList.remove('hidden');
-                document.getElementById('contact-success').classList.add('hidden');
-            }
+            revealElements.forEach(element => {
+                revealOnScroll.observe(element);
+            });
         </script>
+
     </body>
 </html>
