@@ -86,13 +86,13 @@
     
     <body class="bg-brand-dark text-zinc-100 font-sans antialiased min-h-screen relative overflow-x-hidden selection:bg-brand-500 selection:text-white">
 
-        <!-- Background Ambient Glows (Piche chalne wale khubsoorat light effects) -->
+        <!-- Background Ambient Glows -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
             <div class="glowing-bg absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-600/5 blur-[120px]"></div>
             <div class="glowing-bg absolute bottom-[20%] right-[-10%] w-[45%] h-[45%] rounded-full bg-indigo-600/5 blur-[130px]"></div>
         </div>
 
-        <!-- Mobile Header (Jo sirf mobile screens par dikhega) -->
+        <!-- Mobile Header -->
         <div class="fixed top-0 left-0 right-0 z-40 bg-zinc-950/80 backdrop-blur-md border-b border-brand-border lg:hidden flex items-center justify-between px-6 py-4">
             <button onclick="navigateTo('home')" class="text-lg font-extrabold tracking-tight">
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-indigo-400">Sohail's</span> Portfolio
@@ -104,7 +104,7 @@
 
         <div id="wrapper" class="flex min-h-screen pt-16 lg:pt-0 relative z-10">
 
-            <!-- Sidebar Navigation Drawer (Desktop par constant rahega, Mobile par slide hoga) -->
+            <!-- Sidebar Navigation Drawer -->
             <aside id="sidebar" class="fixed top-0 bottom-0 left-0 w-[300px] bg-brand-dark lg:bg-zinc-950 border-r border-brand-border z-45 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
                 <div class="inner h-full flex flex-col justify-between p-8 pt-24 lg:pt-12 overflow-y-auto">
 
@@ -117,7 +117,7 @@
                             <p class="text-[10px] text-zinc-500 mt-1 uppercase tracking-widest font-bold">AI Developer & Backend</p>
                         </div>
 
-                        <!-- Main Multi-page Links (Section navigation khatam, ab ye tabs pages open karenge) -->
+                        <!-- Navigation Menu -->
                         <nav id="menu" class="space-y-1">
                             <p class="text-[10px] font-semibold uppercase tracking-widest text-zinc-500 mb-3 px-3">Navigation Menu</p>
                             <ul class="space-y-1.5">
@@ -158,15 +158,20 @@
                     <!-- Footer Info and Social Links -->
                     <div class="space-y-6 pt-8 border-t border-brand-border mt-8">
                         <section class="space-y-3">
-                            <p class="text-[10px] font-semibold uppercase tracking-widest text-zinc-500 px-1">Connect Karo</p>
-                            <ul class="space-y-2 text-xs text-zinc-400">
+                            <p class="text-[10px] font-semibold uppercase tracking-widest text-zinc-500 px-1">Stay Connected</p>
+                            <ul class="space-y-3 text-xs text-zinc-400">
                                 <li class="flex items-center gap-2.5 hover:text-zinc-200 transition-colors">
                                     <i class="fa-solid fa-envelope text-brand-500"></i> 
                                     <a href="mailto:muhammadsohail3542@gmail.com" class="break-all">muhammadsohail3542@gmail.com</a>
                                 </li>
-                                <li class="flex items-center gap-2.5">
+                                <li class="flex items-center gap-2.5 group hover:text-zinc-200 transition-colors">
                                     <i class="fa-solid fa-location-dot text-brand-500"></i>
-                                    <span>Lahore, Punjab, Pakistan</span>
+                                    <div class="flex flex-col">
+                                        <span class="font-medium">Lahore, Punjab, Pakistan</span>
+                                        <span class="text-[9px] text-emerald-500 font-mono flex items-center gap-1 mt-0.5">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span> Active (GMT+5)
+                                        </span>
+                                    </div>
                                 </li>
                             </ul>
                         </section>
@@ -254,21 +259,21 @@
                                     <i class="fa-solid fa-brain"></i>
                                 </span>
                                 <h4 class="font-bold text-zinc-200 mb-1">AI Pipelines</h4>
-                                <p class="text-zinc-400 text-xs leading-relaxed">RAG pipelines dhoondne, embedding vectors banane aur raw documents convert karne me maharat.</p>
+                                <p class="text-zinc-400 text-xs leading-relaxed">Expertise in designing robust RAG pipelines, managing vector embeddings, and converting unstructured raw documents.</p>
                             </div>
                             <div class="p-5 rounded-2xl bg-zinc-900/30 border border-brand-border">
                                 <span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-brand-500/10 text-brand-500 mb-3">
                                     <i class="fa-solid fa-server"></i>
                                 </span>
                                 <h4 class="font-bold text-zinc-200 mb-1">Reliable APIs</h4>
-                                <p class="text-zinc-400 text-xs leading-relaxed">Asynchronous microservices design karne ke liye FastAPI aur Flask framework par mukammal grip.</p>
+                                <p class="text-zinc-400 text-xs leading-relaxed">Advanced proficiency in building high-performance asynchronous microservices with FastAPI and Flask.</p>
                             </div>
                             <div class="p-5 rounded-2xl bg-zinc-900/30 border border-brand-border">
                                 <span class="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-brand-500/10 text-brand-500 mb-3">
                                     <i class="fa-solid fa-database"></i>
                                 </span>
                                 <h4 class="font-bold text-zinc-200 mb-1">Data Harvesting</h4>
-                                <p class="text-zinc-400 text-xs leading-relaxed">Custom scrapers aur ETL systems jo unstructured data ko automatically parse aur database me store karein.</p>
+                                <p class="text-zinc-400 text-xs leading-relaxed">Engineered custom web scrapers and automated ETL systems that seamlessly parse and persist unstructured data.</p>
                             </div>
                         </section>
                     </div>
@@ -280,24 +285,24 @@
                                 <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-solid fa-user"></i></span>
                                 About Me
                             </h2>
-                            <p class="text-zinc-400 text-sm mt-2">Mera back story, technology ke sath safar aur development principles.</p>
+                            <p class="text-zinc-400 text-sm mt-2">Professional background, technology focus, and development philosophies.</p>
                         </header>
 
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
                             <div class="md:col-span-7 space-y-6">
                                 <h3 class="text-xl font-bold text-zinc-200">Who is Sohail?</h3>
                                 <p class="text-zinc-400 text-sm leading-relaxed">
-                                    Main Lahore, Punjab, Pakistan se taalluq rakhne wala aik software engineer aur developer hoon jo smart systems design karna pasand karta hai. Mera real focus high-quality AI automation aur solid backend data models par hai.
+                                    I am a passionate Software Engineer and AI Developer based in Lahore, Pakistan, focused on building high-performance automation systems and scalable backend architectures.
                                 </p>
                                 <p class="text-zinc-400 text-sm leading-relaxed">
-                                    Complex codes ko bilkul clear structure me transform karna meri habit hai. Python aur SQL databases par continuous research aur implementations ke sath maine multiple systems ko optimize kiya hai.
+                                    I specialize in transforming complex, unstructured logic into clean, highly-efficient data pipelines and microservices. By combining rigorous backend practices with modern database operations, I deliver solutions that optimize speed and computing costs.
                                 </p>
                                 <div class="p-5 rounded-2xl bg-brand-500/5 border border-brand-500/10 space-y-2">
                                     <h4 class="text-sm font-bold text-brand-500 flex items-center gap-2">
-                                        <i class="fa-solid fa-code"></i> Coding Standards
+                                        <i class="fa-solid fa-code"></i> Coding Philosophy
                                     </h4>
                                     <p class="text-zinc-400 text-xs leading-relaxed">
-                                        Mujhe aisi systems banana pasand hain jo asani se readable, fast responsive, aur memory configurations me behad responsive hon taake future scalings me asani ho.
+                                        I design clean, modular, and optimized systems that remain highly responsive, easily readable, and simple to scale for future technical integrations.
                                     </p>
                                 </div>
                             </div>
@@ -308,15 +313,15 @@
                                     <div class="space-y-3">
                                         <div class="space-y-1">
                                             <h5 class="text-xs font-semibold text-zinc-200">1. Modular Code</h5>
-                                            <p class="text-zinc-400 text-[11px] leading-normal">Code ko separate files aur small functions me break karna taake debugging me asani ho.</p>
+                                            <p class="text-zinc-400 text-[11px] leading-normal">Breaking codebases into separate, independent modules to ensure rapid updates and painless debugging.</p>
                                         </div>
                                         <div class="space-y-1">
                                             <h5 class="text-xs font-semibold text-zinc-200">2. Data Safety</h5>
-                                            <p class="text-zinc-400 text-[11px] leading-normal">Pydantic validation layers ke zariye api incoming schemas ko filter aur sanitise karna.</p>
+                                            <p class="text-zinc-400 text-[11px] leading-normal">Leveraging validation libraries like Pydantic to ensure input models are safe, validated, and secure.</p>
                                         </div>
                                         <div class="space-y-1">
                                             <h5 class="text-xs font-semibold text-zinc-200">3. High Coverage</h5>
-                                            <p class="text-zinc-400 text-[11px] leading-normal">Har model aur endpoint ke automated checks aur test scenarios likhna.</p>
+                                            <p class="text-zinc-400 text-[11px] leading-normal">Writing extensive automated test scenarios to maintain exceptional runtime reliability.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -335,7 +340,7 @@
                                     </span>
                                     <span class="text-xs text-brand-500 font-semibold">2024 - Present</span>
                                     <h4 class="text-base font-bold text-zinc-200 mt-0.5">Freelance AI & Backend Architect</h4>
-                                    <p class="text-zinc-400 text-xs mt-2 leading-relaxed">International clients ke liye data pipeline structure deploy kar raha hoon. FastAPI microservices aur database schema setups optimized kar raha hoon.</p>
+                                    <p class="text-zinc-400 text-xs mt-2 leading-relaxed">Deploying robust data pipelines and optimized FastAPI microservices alongside advanced SQL schema setups for global clients.</p>
                                 </div>
                                 <div class="relative">
                                     <span class="absolute -left-[31px] top-1.5 w-4.5 h-4.5 rounded-full bg-zinc-950 border-2 border-brand-500 flex items-center justify-center">
@@ -343,7 +348,7 @@
                                     </span>
                                     <span class="text-xs text-brand-500 font-semibold">2022 - 2024</span>
                                     <h4 class="text-base font-bold text-zinc-200 mt-0.5">Data Analyst & Automation Lead</h4>
-                                    <p class="text-zinc-400 text-xs mt-2 leading-relaxed">Lahore local industry me datasets parsing aur database maintenance perform ki. Auto-scrapers deploy kiye.</p>
+                                    <p class="text-zinc-400 text-xs mt-2 leading-relaxed">Maintained production databases, performed comprehensive data analysis, and deployed automated web scrapers for local industries.</p>
                                 </div>
                             </div>
                         </section>
@@ -356,7 +361,7 @@
                                 <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-solid fa-cubes"></i></span>
                                 Technical Skills
                             </h2>
-                            <p class="text-zinc-400 text-sm mt-2">Jin tools aur technologies ka use kar ke main real-world solution design karta hoon.</p>
+                            <p class="text-zinc-400 text-sm mt-2">The core set of frameworks, databases, and architectural tools I leverage to build enterprise-grade automation systems.</p>
                         </header>
 
                         <!-- Features lists -->
@@ -368,7 +373,7 @@
                                     </span>
                                     <div>
                                         <h3 class="text-lg font-bold text-zinc-100">Data Engineering & Analytics</h3>
-                                        <p class="text-zinc-400 text-xs leading-relaxed mt-1">Python frameworks (Pandas, Numpy) ke dynamic use se heavy datasets ko clean, aggregate, aur model input k liye ready karna.</p>
+                                        <p class="text-zinc-400 text-xs leading-relaxed mt-1">Utilizing Pandas, NumPy, and advanced Python pipelines to clean, normalize, aggregate, and process complex production-scale datasets.</p>
                                     </div>
                                 </div>
                             </article>
@@ -380,7 +385,7 @@
                                     </span>
                                     <div>
                                         <h3 class="text-lg font-bold text-zinc-100">FastAPI & Flask API System</h3>
-                                        <p class="text-zinc-400 text-xs leading-relaxed mt-1">Multi-threaded API systems, authorization middlewares, CORS configs, aur secure endpoints creation.</p>
+                                        <p class="text-zinc-400 text-xs leading-relaxed mt-1">Building resilient API systems featuring secure OAuth2 middlewares, multi-threaded worker configurations, and optimized endpoints.</p>
                                     </div>
                                 </div>
                             </article>
@@ -392,7 +397,7 @@
                                     </span>
                                     <div>
                                         <h3 class="text-lg font-bold text-zinc-100">Unstructured Document Parsers</h3>
-                                        <p class="text-zinc-400 text-xs leading-relaxed mt-1">Difficult format PDFs, scanned sheets aur custom reports se raw tables dhoond kar structure JSONs banana.</p>
+                                        <p class="text-zinc-400 text-xs leading-relaxed mt-1">Constructing resilient parser logic to isolate tabular grids, structured metadata, and plain text from unformatted scanned documents.</p>
                                     </div>
                                 </div>
                             </article>
@@ -404,54 +409,11 @@
                                     </span>
                                     <div>
                                         <h3 class="text-lg font-bold text-zinc-100">Automation Scrapers</h3>
-                                        <p class="text-zinc-400 text-xs leading-relaxed mt-1">Celery aur Redis queues use karke background scheduled scripts run karna jo daily information extract karein.</p>
+                                        <p class="text-zinc-400 text-xs leading-relaxed mt-1">Implementing background task runners with Celery, Redis, and cron schedules to automate deep daily web scraping and harvesting tasks.</p>
                                     </div>
                                 </div>
                             </article>
                         </div>
-
-                        <!-- Progress Bar Metrics -->
-                        <section class="space-y-6 border-t border-brand-border pt-10">
-                            <h3 class="text-xl font-bold text-zinc-200">Tools Mastery Levels</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-5">
-                                <div class="space-y-1.5">
-                                    <div class="flex justify-between text-xs font-semibold">
-                                        <span class="text-zinc-300">Python (Data Engineering Frameworks)</span>
-                                        <span class="text-brand-500">95%</span>
-                                    </div>
-                                    <div class="w-full h-2 rounded-full bg-zinc-900 overflow-hidden">
-                                        <div class="h-full bg-brand-500 rounded-full" style="width: 95%"></div>
-                                    </div>
-                                </div>
-                                <div class="space-y-1.5">
-                                    <div class="flex justify-between text-xs font-semibold">
-                                        <span class="text-zinc-300">FastAPI & Microservices Architecture</span>
-                                        <span class="text-brand-500">90%</span>
-                                    </div>
-                                    <div class="w-full h-2 rounded-full bg-zinc-900 overflow-hidden">
-                                        <div class="h-full bg-brand-500 rounded-full" style="width: 90%"></div>
-                                    </div>
-                                </div>
-                                <div class="space-y-1.5">
-                                    <div class="flex justify-between text-xs font-semibold">
-                                        <span class="text-zinc-300">Document Parsers & Data Cleaners</span>
-                                        <span class="text-brand-500">92%</span>
-                                    </div>
-                                    <div class="w-full h-2 rounded-full bg-zinc-900 overflow-hidden">
-                                        <div class="h-full bg-brand-500 rounded-full" style="width: 92%"></div>
-                                    </div>
-                                </div>
-                                <div class="space-y-1.5">
-                                    <div class="flex justify-between text-xs font-semibold">
-                                        <span class="text-zinc-300">SQL Schema & Data Modeling</span>
-                                        <span class="text-brand-500">85%</span>
-                                    </div>
-                                    <div class="w-full h-2 rounded-full bg-zinc-900 overflow-hidden">
-                                        <div class="h-full bg-brand-500 rounded-full" style="width: 85%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
                     </div>
 
                     <!-- ================= PAGE 4: PROJECTS PAGE ================= -->
@@ -462,24 +424,19 @@
                                     <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-solid fa-folder-open"></i></span>
                                     Featured Projects
                                 </h2>
-                                <p class="text-zinc-400 text-sm mt-2">Wo solid tools aur applications jo maine scratch se build ki hain.</p>
+                                <p class="text-zinc-400 text-sm mt-2">A selection of end-to-end applications, pipelines, and tools designed and developed from scratch.</p>
                             </div>
 
                             <!-- Filter Controls -->
-                            <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                            <div class="flex gap-4 pt-2">
                                 <div class="relative flex-1">
                                     <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-zinc-500 text-sm"></i>
                                     <input
                                         type="text"
                                         id="project-search-input"
-                                        placeholder="Search products by framework name..."
+                                        placeholder="Search projects by framework, tech, or title..."
                                         class="w-full pl-11 pr-4 py-3 rounded-xl bg-zinc-900 border border-brand-border text-sm text-zinc-200 placeholder-zinc-500 focus:outline-none focus:border-brand-500 transition-colors"
                                     />
-                                </div>
-                                <div class="flex gap-2" id="project-filter-container">
-                                    <button onclick="filterProjects('all')" class="proj-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition-all border bg-brand-500/15 border-brand-500 text-brand-400">All Work</button>
-                                    <button onclick="filterProjects('data')" class="proj-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition-all border bg-zinc-900 border-brand-border text-zinc-400 hover:text-zinc-200">Data Engineering</button>
-                                    <button onclick="filterProjects('backend')" class="proj-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition-all border bg-zinc-900 border-brand-border text-zinc-400 hover:text-zinc-200">APIs</button>
                                 </div>
                             </div>
                         </header>
@@ -488,7 +445,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
                             
                             <!-- Project Item 1 -->
-                            <article data-category="data" class="proj-card flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-800 hover:shadow-xl transition-all duration-300 group">
+                            <article class="proj-card flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-800 hover:shadow-xl transition-all duration-300 group">
                                 <div class="aspect-video w-full bg-zinc-850 overflow-hidden relative">
                                     <img src="images/netflix-data-insights-1990s.jpg" 
                                          alt="Netflix Data Insights" 
@@ -515,7 +472,7 @@
                             </article>
 
                             <!-- Project Item 2 -->
-                            <article data-category="data" class="proj-card flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-800 hover:shadow-xl transition-all duration-300 group">
+                            <article class="proj-card flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-800 hover:shadow-xl transition-all duration-300 group">
                                 <div class="aspect-video w-full bg-zinc-850 overflow-hidden relative">
                                     <img src="images/nobel_prize.jpg" 
                                          alt="Nobel Prize Analysis" 
@@ -542,7 +499,7 @@
                             </article>
 
                             <!-- Project Item 3 -->
-                            <article data-category="data" class="proj-card flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-800 hover:shadow-xl transition-all duration-300 group">
+                            <article class="proj-card flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-800 hover:shadow-xl transition-all duration-300 group">
                                 <div class="aspect-video w-full bg-zinc-850 overflow-hidden relative">
                                     <img src="images/nyc_sat_analysis.jpg" 
                                          alt="NYC Schools SAT Analysis" 
@@ -569,7 +526,7 @@
                             </article>
 
                             <!-- Project Item 4 -->
-                            <article data-category="backend" class="proj-card flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-800 hover:shadow-xl transition-all duration-300 group">
+                            <article class="proj-card flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-800 hover:shadow-xl transition-all duration-300 group">
                                 <div class="aspect-video w-full bg-zinc-850 overflow-hidden relative">
                                     <img src="./images/customer-analytics-data-prep.jpg" 
                                          alt="Customer Analytics Data Prep" 
@@ -604,58 +561,22 @@
                             <div>
                                 <h2 class="text-3xl font-extrabold tracking-tight text-zinc-100 flex items-center gap-3">
                                     <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-solid fa-feather"></i></span>
-                                    Medium Articles
+                                    My Articles & Writing
                                 </h2>
-                                <p class="text-zinc-400 text-sm mt-2">Main Medium aur professional blogs par technology topics par likhta rehta hoon.</p>
+                                <p class="text-zinc-400 text-sm mt-2">Sharing advanced guides on backend optimizations, web automation, and distributed systems. The sections below can be customized instantly.</p>
                             </div>
                         </header>
 
-                        <!-- Blogroll stack -->
-                        <div class="space-y-6">
-                            
-                            <!-- Blog Item 1 -->
-                            <article class="p-6 rounded-2xl bg-zinc-900/30 border border-brand-border hover:border-zinc-800 transition-all cursor-pointer group flex flex-col sm:flex-row justify-between gap-6" onclick="openBlogModal('blog-1')">
-                                <div class="space-y-3 flex-1">
-                                    <div class="flex items-center gap-2 text-[10px] font-bold text-zinc-500">
-                                        <span class="px-2 py-0.5 rounded bg-zinc-900 border border-brand-border text-brand-500">Data Engineering</span>
-                                        <span>&bull;</span>
-                                        <span>May 12, 2026</span>
-                                        <span>&bull;</span>
-                                        <span>6 min read</span>
-                                    </div>
-                                    <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-500 transition-colors">Mastering Unstructured Data: How to Clean Messy PDFs for AI Pipelines</h3>
-                                    <p class="text-zinc-400 text-xs leading-relaxed">Learn how to design robust Python algorithms to extract clean structural text from unformatted PDFs for vector search systems.</p>
-                                    <span class="inline-flex items-center gap-1.5 text-xs text-brand-500 font-bold group-hover:translate-x-1 transition-transform pt-1">
-                                        Read Full Article <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                                    </span>
-                                </div>
-                            </article>
-
-                            <!-- Blog Item 2 -->
-                            <article class="p-6 rounded-2xl bg-zinc-900/30 border border-brand-border hover:border-zinc-800 transition-all cursor-pointer group flex flex-col sm:flex-row justify-between gap-6" onclick="openBlogModal('blog-2')">
-                                <div class="space-y-3 flex-1">
-                                    <div class="flex items-center gap-2 text-[10px] font-bold text-zinc-500">
-                                        <span class="px-2 py-0.5 rounded bg-zinc-900 border border-brand-border text-brand-500">Backend Dev</span>
-                                        <span>&bull;</span>
-                                        <span>April 28, 2026</span>
-                                        <span>&bull;</span>
-                                        <span>4 min read</span>
-                                    </div>
-                                    <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-500 transition-colors">Why FastAPI is the Go-To Framework for AI Model Deployment</h3>
-                                    <p class="text-zinc-400 text-xs leading-relaxed">Explore why asynchronous request handling and dynamic validation make FastAPI optimum for serving heavy statistical models.</p>
-                                    <span class="inline-flex items-center gap-1.5 text-xs text-brand-500 font-bold group-hover:translate-x-1 transition-transform pt-1">
-                                        Read Full Article <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                                    </span>
-                                </div>
-                            </article>
-
+                        <!-- Dynamic Customizable Blogroll Stack -->
+                        <div class="space-y-6" id="blogs-container">
+                            <!-- JS dynamically populates the articles configured inside the tag script below -->
                         </div>
 
                         <!-- CTA card to read on Medium -->
                         <div class="p-8 rounded-2xl bg-gradient-to-r from-zinc-900 to-indigo-950/15 border border-brand-border flex flex-col md:flex-row md:items-center justify-between gap-6">
                             <div class="space-y-2">
-                                <h4 class="text-lg font-bold text-zinc-200">Want to explore all articles?</h4>
-                                <p class="text-zinc-400 text-xs leading-relaxed max-w-xl">I actively write step-by-step guides on Python optimizations, Celery architectures, and web automation on my Medium space.</p>
+                                <h4 class="text-lg font-bold text-zinc-200">Want to explore my full profile?</h4>
+                                <p class="text-zinc-400 text-xs leading-relaxed max-w-xl">You can explore my Medium profile to read my complete technical articles, deep dives, and system design tutorials.</p>
                             </div>
                             <a href="https://medium.com/@muhammadsohail3542" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-zinc-950 hover:bg-zinc-900 border border-brand-border text-xs font-bold text-zinc-200 gap-2">
                                 Go to Medium <i class="fa-solid fa-arrow-up-right-from-square text-brand-500"></i>
@@ -670,14 +591,14 @@
                                 <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-solid fa-paper-plane"></i></span>
                                 Contact Details
                             </h2>
-                            <p class="text-zinc-400 text-sm mt-2">Queries, consulting projects, and collaboration invites are always welcome.</p>
+                            <p class="text-zinc-400 text-sm mt-2">Have a project or opportunity in mind? Reach out directly via the form below or connect instantly.</p>
                         </header>
 
                         <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
                             <div class="md:col-span-5 space-y-6">
-                                <h3 class="text-lg font-bold text-zinc-200">Let's talk about solutions!</h3>
+                                <h3 class="text-lg font-bold text-zinc-200">Let's build powerful solutions</h3>
                                 <p class="text-zinc-400 text-xs leading-relaxed">
-                                    Agar aapko koi scraper setup karwana hai, custom data preprocessing system deploy karna hai ya model serving APIs create karni hain, feel free to fill this secure form.
+                                    If you need customized scrapers, high-performance database tuning, AI model serving, or secure REST APIs, submit your details.
                                 </p>
 
                                 <div class="space-y-3">
@@ -690,15 +611,40 @@
                                             <a href="mailto:muhammadsohail3542@gmail.com" class="text-zinc-200 hover:text-brand-500 text-xs font-semibold break-all">muhammadsohail3542@gmail.com</a>
                                         </div>
                                     </div>
-                                    <div class="flex items-center gap-3 p-4 rounded-xl bg-zinc-900/40 border border-brand-border">
-                                        <span class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-brand-500/10 text-brand-500">
-                                            <i class="fa-solid fa-location-dot"></i>
-                                        </span>
-                                        <div>
-                                            <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Office Location</p>
-                                            <span class="text-zinc-200 text-xs font-semibold">Lahore, Punjab, Pakistan</span>
+
+                                    <!-- Premium High-End Location Card -->
+                                    <div class="relative overflow-hidden p-5 rounded-xl bg-zinc-900/40 border border-brand-border hover:border-brand-500/20 transition-all group">
+                                        <div class="flex items-start gap-3.5">
+                                            <span class="flex-shrink-0 flex items-center justify-center w-10 h-10 rounded-lg bg-brand-500/10 text-brand-500 text-base shadow-inner">
+                                                <i class="fa-solid fa-location-dot"></i>
+                                            </span>
+                                            <div class="space-y-1 flex-1">
+                                                <p class="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Base of Operations</p>
+                                                <h4 class="text-zinc-200 text-xs font-bold leading-tight">Lahore, Punjab, Pakistan</h4>
+                                                <p class="text-[10px] text-zinc-400 leading-normal">Remote Worldwide &amp; Local Consultations</p>
+                                                <div class="pt-2 flex items-center gap-1.5 text-[9px] text-emerald-400 font-mono font-semibold">
+                                                    <span class="relative flex h-2 w-2">
+                                                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                                    </span>
+                                                    Time Zone: PKT (UTC+5)
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                </div>
+
+                                <!-- WhatsApp Action -->
+                                <div class="p-5 rounded-2xl bg-green-500/5 border border-green-500/10 space-y-3">
+                                    <h4 class="text-xs font-bold text-green-500 flex items-center gap-1.5">
+                                        <i class="fa-brands fa-whatsapp text-sm"></i> Instant Quick Chat
+                                    </h4>
+                                    <p class="text-zinc-400 text-[11px] leading-relaxed">
+                                        For immediate inquiries or rapid consulting sessions, click below to initiate a direct conversation on WhatsApp.
+                                    </p>
+                                    <a href="https://wa.me/923000000000?text=Hi%20Sohail,%20I%20saw%20your%20portfolio%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all">
+                                        Chat on WhatsApp <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                    </a>
                                 </div>
                             </div>
 
@@ -718,25 +664,30 @@
                                         <button onclick="resetContactForm()" class="text-xs text-brand-500 font-bold underline">Send another message</button>
                                     </div>
 
-                                    <!-- Form Body -->
-                                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                                    <!-- Web3Forms Integration -->
+                                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                                        <!-- Replace value with your Web3Forms Access Key (Get from web3forms.com for free) -->
+                                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                                        <input type="hidden" name="subject" value="New Portfolio Message from Sohail's Website">
+                                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                             <div class="space-y-1">
                                                 <label class="text-[10px] font-semibold text-zinc-400 uppercase">Your Name *</label>
-                                                <input required type="text" id="form-name" placeholder="E.g. Ali Raza" class="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-brand-border text-xs text-zinc-200 focus:outline-none focus:border-brand-500 transition-colors" />
+                                                <input required type="text" name="name" id="form-name" placeholder="Enter your name" class="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-brand-border text-xs text-zinc-200 focus:outline-none focus:border-brand-500 transition-colors" />
                                             </div>
                                             <div class="space-y-1">
                                                 <label class="text-[10px] font-semibold text-zinc-400 uppercase">Your Email *</label>
-                                                <input required type="email" id="form-email" placeholder="E.g. client@domain.com" class="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-brand-border text-xs text-zinc-200 focus:outline-none focus:border-brand-500 transition-colors" />
+                                                <input required type="email" name="email" id="form-email" placeholder="Enter your email" class="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-brand-border text-xs text-zinc-200 focus:outline-none focus:border-brand-500 transition-colors" />
                                             </div>
                                         </div>
                                         <div class="space-y-1">
                                             <label class="text-[10px] font-semibold text-zinc-400 uppercase">Subject</label>
-                                            <input type="text" id="form-subject" placeholder="E.g. Database optimization task" class="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-brand-border text-xs text-zinc-200 focus:outline-none focus:border-brand-500 transition-colors" />
+                                            <input type="text" name="custom_subject" id="form-subject" placeholder="Enter subject" class="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-brand-border text-xs text-zinc-200 focus:outline-none focus:border-brand-500 transition-colors" />
                                         </div>
                                         <div class="space-y-1">
                                             <label class="text-[10px] font-semibold text-zinc-400 uppercase">Message details *</label>
-                                            <textarea required rows="4" id="form-message" placeholder="Provide description of task specs..." class="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-brand-border text-xs text-zinc-200 focus:outline-none focus:border-brand-500 transition-colors resize-none"></textarea>
+                                            <textarea required rows="4" name="message" id="form-message" placeholder="Enter message details..." class="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-brand-border text-xs text-zinc-200 focus:outline-none focus:border-brand-500 transition-colors resize-none"></textarea>
                                         </div>
                                         <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition-all gap-2 cursor-pointer">
                                             <i class="fa-solid fa-paper-plane"></i> Send Secure Message
@@ -810,8 +761,8 @@
                     <h3 id="modal-blog-title" class="text-xl md:text-2xl font-extrabold text-zinc-100"></h3>
                     <div id="modal-blog-content" class="text-zinc-300 text-xs leading-relaxed space-y-4 pt-4 border-t border-zinc-800 whitespace-pre-line"></div>
                     <div class="flex justify-between items-center pt-6 border-t border-zinc-800">
-                        <a href="https://medium.com/@muhammadsohail3542" target="_blank" class="inline-flex items-center gap-2 text-xs text-brand-400 font-bold hover:underline">
-                            Follow on Medium <i class="fa-brands fa-medium text-sm"></i>
+                        <a id="modal-blog-link" href="#" target="_blank" class="inline-flex items-center gap-2 text-xs text-brand-400 font-bold hover:underline">
+                            Read Full Article on Publisher <i class="fa-solid fa-arrow-up-right-from-square"></i>
                         </a>
                         <button onclick="closeBlogModal()" class="px-4 py-2 rounded-xl bg-zinc-950 hover:bg-zinc-850 text-zinc-400 text-xs font-bold transition-colors">
                             Close Reader
@@ -850,14 +801,12 @@
             sidebarToggle.addEventListener('click', () => toggleMobileSidebar());
             sidebarBackdrop.addEventListener('click', () => toggleMobileSidebar(true));
 
-            // 2. Multi-Page Navigation Logic (Single page show-hide system)
+            // 2. Multi-Page Navigation Logic
             function navigateTo(pageId) {
-                // Pehle page transition effect apply karein
                 pageViews.forEach(view => {
                     view.classList.remove('active-page');
                 });
 
-                // Targeted page show karein
                 const targetPage = document.getElementById('page-' + pageId);
                 if (targetPage) {
                     setTimeout(() => {
@@ -865,7 +814,6 @@
                     }, 50);
                 }
 
-                // Sidebar buttons active state highlight karein
                 navButtons.forEach(btn => {
                     const pageAttr = btn.getAttribute('data-page');
                     if (pageAttr === pageId) {
@@ -875,57 +823,31 @@
                     }
                 });
 
-                // Scroll to top automatically
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-
-                // Mobile drawer close karein
                 toggleMobileSidebar(true);
             }
 
-            // 3. Projects Category Filter and Search
+            // 3. Projects Live Search Filter Only
             const projectSearchInput = document.getElementById('project-search-input');
             const projCards = document.querySelectorAll('.proj-card');
 
-            function filterProjects(category) {
-                // Update active filter button designs
-                const filterBtns = document.querySelectorAll('#project-filter-container button');
-                filterBtns.forEach(btn => {
-                    if (btn.innerText.toLowerCase().includes(category === 'all' ? 'all' : category)) {
-                        btn.className = "proj-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition-all border bg-brand-500/15 border-brand-500 text-brand-400";
-                    } else {
-                        btn.className = "proj-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold transition-all border bg-zinc-900 border-brand-border text-zinc-400 hover:text-zinc-200";
-                    }
-                });
-
-                applyFilters(category, projectSearchInput.value);
-            }
-
             projectSearchInput.addEventListener('input', () => {
-                const activeTab = document.querySelector('#project-filter-container .text-brand-400').innerText.toLowerCase();
-                let category = 'all';
-                if (activeTab.includes('data')) category = 'data';
-                if (activeTab.includes('api')) category = 'backend';
-                applyFilters(category, projectSearchInput.value);
-            });
-
-            function applyFilters(category, searchQuery) {
+                const searchQuery = projectSearchInput.value.toLowerCase();
                 projCards.forEach(card => {
-                    const cardCategory = card.getAttribute('data-category');
                     const cardTitle = card.querySelector('h3').innerText.toLowerCase();
                     const cardDesc = card.querySelector('p').innerText.toLowerCase();
                     
-                    const matchesCategory = (category === 'all') || (cardCategory === category);
-                    const matchesSearch = cardTitle.includes(searchQuery.toLowerCase()) || cardDesc.includes(searchQuery.toLowerCase());
+                    const matchesSearch = cardTitle.includes(searchQuery) || cardDesc.includes(searchQuery);
 
-                    if (matchesCategory && matchesSearch) {
+                    if (matchesSearch) {
                         card.style.display = 'flex';
                     } else {
                         card.style.display = 'none';
                     }
                 });
-            }
+            });
 
-            // 4. Modal Data Maps (Pure JS memory map)
+            // 4. Projects Modal Data Map
             const projectsData = {
                 'netflix': {
                     title: 'Netflix Data Insights (1990s)',
@@ -937,7 +859,7 @@
                 'nobel': {
                     title: 'Nobel Prize Analysis',
                     image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80',
-                    desc: 'A comprehensive study tracking Nobel laureates over multiple decades. The program cleans localized character sets, aggregates geographical ratios to dhoond who is leading in award density, and visualizes changing demographics (including ages and gender scales) clearly.',
+                    desc: 'A comprehensive study tracking Nobel laureates over multiple decades. The program cleans localized character sets, aggregates geographical ratios to see who is leading in award density, and visualizes changing demographics (including ages and gender scales) clearly.',
                     techs: ['Python', 'Numpy', 'Plotly', 'Matplotlib'],
                     link: 'https://github.com/SohailArif313/nobel_prize_analysis'
                 },
@@ -957,24 +879,66 @@
                 }
             };
 
-            const blogsData = {
-                'blog-1': {
+            // ================= EDIT YOUR ARTICLES & WRITING CONFIGURATION HERE =================
+            const blogsData = [
+                {
+                    id: 'blog-1',
                     title: 'Mastering Unstructured Data: How to Clean Messy PDFs for AI Pipelines',
                     category: 'Data Engineering',
-                    date: 'May 12, 2026',
+                    date: 'August 15, 2025',
+                    readTime: '6 min read',
+                    desc: 'Learn how to design robust Python algorithms to extract clean structural text from unformatted PDFs for vector search systems.',
                     content: `PDFs contain coordinates, not structural formats. When you parse unstructured files using traditional tools, lines frequently overlap and tables break.
                     
-                    In this piece, we go through coordinate parsing filters that align paragraphs automatically, extract tabular grids perfectly into structured datasets, and format paragraphs ready for Vector databases in modern RAG systems.`
+                    In this piece, we go through coordinate parsing filters that align paragraphs automatically, extract tabular grids perfectly into structured datasets, and format paragraphs ready for Vector databases in modern RAG systems.`,
+                    link: 'https://medium.com/@muhammadsohail3542'
                 },
-                'blog-2': {
+                {
+                    id: 'blog-2',
                     title: 'Why FastAPI is the Go-To Framework for AI Model Deployment',
                     category: 'Backend Dev',
-                    date: 'April 28, 2026',
+                    date: 'December 20, 2025',
+                    readTime: '4 min read',
+                    desc: 'Explore why asynchronous request handling and dynamic validation make FastAPI optimum for serving heavy statistical models.',
                     content: `AI workloads and heavy machine learning classifiers demand non-blocking async processes to preserve compute capacities. 
                     
-                    FastAPI leverages ASGI standard architectures, enables Pydantic inputs validation out of the box, and provides auto-generated Swagger UI dashboards instantly.`
+                    FastAPI leverages ASGI standard architectures, enables Pydantic inputs validation out of the box, and provides auto-generated Swagger UI dashboards instantly.`,
+                    link: 'https://medium.com/@muhammadsohail3542'
                 }
-            };
+            ];
+
+            // Render Blogs Dynamically
+            function renderBlogs() {
+                const container = document.getElementById('blogs-container');
+                container.innerHTML = '';
+                
+                blogsData.forEach(blog => {
+                    const article = document.createElement('article');
+                    article.className = "p-6 rounded-2xl bg-zinc-900/30 border border-brand-border hover:border-zinc-800 transition-all cursor-pointer group flex flex-col sm:flex-row justify-between gap-6";
+                    article.onclick = () => openBlogModal(blog.id);
+                    
+                    article.innerHTML = `
+                        <div class="space-y-3 flex-1">
+                            <div class="flex items-center gap-2 text-[10px] font-bold text-zinc-500">
+                                <span class="px-2 py-0.5 rounded bg-zinc-900 border border-brand-border text-brand-500">${blog.category}</span>
+                                <span>&bull;</span>
+                                <span>${blog.date}</span>
+                                <span>&bull;</span>
+                                <span>${blog.readTime}</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-500 transition-colors">${blog.title}</h3>
+                            <p class="text-zinc-400 text-xs leading-relaxed">${blog.desc}</p>
+                            <span class="inline-flex items-center gap-1.5 text-xs text-brand-500 font-bold group-hover:translate-x-1 transition-transform pt-1">
+                                Read Article & Specs <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                            </span>
+                        </div>
+                    `;
+                    container.appendChild(article);
+                });
+            }
+
+            // Initialize blogs on load
+            renderBlogs();
 
             // Modal Trigger Functions
             function openProjectModal(id) {
@@ -1002,12 +966,13 @@
             }
 
             function openBlogModal(id) {
-                const data = blogsData[id];
+                const data = blogsData.find(b => b.id === id);
                 if (!data) return;
                 document.getElementById('modal-blog-title').innerText = data.title;
                 document.getElementById('modal-blog-category').innerText = data.category;
                 document.getElementById('modal-blog-date').innerText = data.date;
                 document.getElementById('modal-blog-content').innerText = data.content;
+                document.getElementById('modal-blog-link').href = data.link;
 
                 document.getElementById('blog-modal').classList.remove('hidden');
             }
@@ -1016,11 +981,43 @@
                 document.getElementById('blog-modal').classList.add('hidden');
             }
 
-            // 5. Direct Message Contact Form Logic
+            // 5. Secure Contact Form Submission via Web3Forms
             function handleFormSubmit(e) {
-                e.preventDefault();
-                document.getElementById('contact-form').classList.add('hidden');
-                document.getElementById('contact-success').classList.remove('hidden');
+                const form = document.getElementById('contact-form');
+                const nameVal = document.getElementById('form-name').value;
+                const emailVal = document.getElementById('form-email').value;
+                const msgVal = document.getElementById('form-message').value;
+
+                const formData = new FormData(form);
+                const accessKey = formData.get('access_key');
+
+                if(accessKey === 'YOUR_ACCESS_KEY_HERE' || accessKey.trim() === '') {
+                    e.preventDefault();
+                    const mailtoUrl = `mailto:muhammadsohail3542@gmail.com?subject=Portfolio Project Inquiry&body=Name: ${encodeURIComponent(nameVal)}%0D%0AEmail: ${encodeURIComponent(emailVal)}%0D%0AMessage: ${encodeURIComponent(msgVal)}`;
+                    window.location.href = mailtoUrl;
+                    
+                    document.getElementById('contact-form').classList.add('hidden');
+                    document.getElementById('contact-success').classList.remove('hidden');
+                } else {
+                    e.preventDefault();
+                    
+                    fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            document.getElementById('contact-form').classList.add('hidden');
+                            document.getElementById('contact-success').classList.remove('hidden');
+                        } else {
+                            window.location.href = `mailto:muhammadsohail3542@gmail.com?subject=Inquiry&body=${encodeURIComponent(msgVal)}`;
+                        }
+                    })
+                    .catch(error => {
+                        window.location.href = `mailto:muhammadsohail3542@gmail.com?subject=Inquiry&body=${encodeURIComponent(msgVal)}`;
+                    });
+                }
             }
 
             function resetContactForm() {
