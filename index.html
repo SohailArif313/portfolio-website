@@ -8,7 +8,7 @@
         
         <!-- Tailwind CSS & Inter Font -->
         <script src="https://cdn.tailwindcss.com"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
         <!-- FontAwesome for Premium Icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         
@@ -69,17 +69,26 @@
                 -webkit-backdrop-filter: blur(16px);
             }
 
-            /* Smooth Virtual Page Transitions */
+            /* Premium Virtual Page Transition Keyframes */
+            @keyframes pageFadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(12px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
             .page-view {
                 display: none;
                 opacity: 0;
-                transform: translateY(12px);
-                transition: opacity 0.3s ease-out, transform 0.3s ease-out;
             }
+            
             .page-view.active-page {
                 display: block;
-                opacity: 1;
-                transform: translateY(0);
+                animation: pageFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
             }
         </style>
     </head>
@@ -142,11 +151,6 @@
                                     </button>
                                 </li>
                                 <li>
-                                    <button onclick="navigateTo('blogs')" data-page="blogs" class="nav-btn w-full flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 text-sm font-medium text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200">
-                                        <i class="fa-solid fa-feather text-base"></i> Blogs
-                                    </button>
-                                </li>
-                                <li>
                                     <button onclick="navigateTo('contact')" data-page="contact" class="nav-btn w-full flex items-center gap-3.5 px-4 py-3 rounded-xl transition-all duration-200 text-sm font-medium text-zinc-400 hover:bg-zinc-900 hover:text-zinc-200">
                                         <i class="fa-solid fa-paper-plane text-base"></i> Contact Info
                                     </button>
@@ -184,7 +188,7 @@
                         </div>
 
                         <footer class="text-zinc-600 text-[10px] tracking-wide pt-1">
-                            <p class="copyright">&copy; Muhammad Sohail. All rights reserved.</p>
+                            <p class="copyright">&copy; <span class="dyn-year">2026</span> Muhammad Sohail. All rights reserved.</p>
                         </footer>
                     </div>
 
@@ -242,11 +246,11 @@
                                 <div class="relative group">
                                     <div class="absolute -inset-1.5 bg-gradient-to-r from-brand-500 to-indigo-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
                                     <div class="relative rounded-2xl overflow-hidden bg-zinc-900 border border-brand-border w-[280px] h-[320px]">
-                                        <!-- Profile placeholder fallback image -->
+                                        <!-- Upgraded headshot placeholder image to masculine dev avatar to match profile -->
                                         <img src="images/my-photo.jpg" 
                                              alt="Muhammad Sohail" 
                                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=280&h=320&q=80';" />
+                                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=280&h=320&q=80';" />
                                     </div>
                                 </div>
                             </div>
@@ -327,31 +331,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Professional Progression Timeline -->
-                        <section class="space-y-6 border-t border-brand-border pt-10">
-                            <h3 class="text-xl font-bold text-zinc-200 flex items-center gap-2">
-                                <i class="fa-solid fa-briefcase text-brand-500 text-sm"></i> Education & Experience Timeline
-                            </h3>
-                            <div class="relative border-l border-zinc-800 ml-4 pl-6 space-y-8">
-                                <div class="relative">
-                                    <span class="absolute -left-[31px] top-1.5 w-4.5 h-4.5 rounded-full bg-zinc-950 border-2 border-brand-500 flex items-center justify-center">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                                    </span>
-                                    <span class="text-xs text-brand-500 font-semibold">2024 - Present</span>
-                                    <h4 class="text-base font-bold text-zinc-200 mt-0.5">Freelance AI & Backend Architect</h4>
-                                    <p class="text-zinc-400 text-xs mt-2 leading-relaxed">Deploying robust data pipelines and optimized FastAPI microservices alongside advanced SQL schema setups for global clients.</p>
-                                </div>
-                                <div class="relative">
-                                    <span class="absolute -left-[31px] top-1.5 w-4.5 h-4.5 rounded-full bg-zinc-950 border-2 border-brand-500 flex items-center justify-center">
-                                        <span class="w-1.5 h-1.5 rounded-full bg-brand-400"></span>
-                                    </span>
-                                    <span class="text-xs text-brand-500 font-semibold">2022 - 2024</span>
-                                    <h4 class="text-base font-bold text-zinc-200 mt-0.5">Data Analyst & Automation Lead</h4>
-                                    <p class="text-zinc-400 text-xs mt-2 leading-relaxed">Maintained production databases, performed comprehensive data analysis, and deployed automated web scrapers for local industries.</p>
-                                </div>
-                            </div>
-                        </section>
                     </div>
 
                     <!-- ================= PAGE 3: TECHNICAL SKILLS ================= -->
@@ -441,16 +420,24 @@
                             </div>
                         </header>
 
+                        <!-- No Search Results Found Message Panel -->
+                        <div id="no-projects-message" class="hidden text-center py-12 px-6 rounded-2xl bg-zinc-900/30 border border-brand-border">
+                            <i class="fa-solid fa-folder-open text-3xl text-zinc-600 mb-3 block"></i>
+                            <h4 class="text-sm font-bold text-zinc-300">No matching projects found</h4>
+                            <p class="text-xs text-zinc-500 mt-1 max-w-sm mx-auto">Try typing another framework or tech stack keyword, like "Python", "Pandas", "Statistical", or "Sklearn".</p>
+                        </div>
+
                         <!-- Projects Cards Grid -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="projects-grid">
                             
                             <!-- Project Item 1 -->
                             <article class="proj-card flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-800 hover:shadow-xl transition-all duration-300 group">
                                 <div class="aspect-video w-full bg-zinc-850 overflow-hidden relative">
+                                    <!-- High-fidelity Netflix abstract theme fallback instead of generic tv backdrop -->
                                     <img src="images/netflix-data-insights-1990s.jpg" 
                                          alt="Netflix Data Insights" 
                                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1574375927938-d5a98e8fed85?auto=format&fit=crop&w=600&q=80';" />
+                                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=600&q=80';" />
                                 </div>
                                 <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
                                     <div class="space-y-2">
@@ -464,7 +451,7 @@
                                             <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Seaborn</span>
                                         </div>
                                         <div class="flex items-center justify-between text-xs pt-2 border-t border-zinc-900">
-                                            <button onclick="openProjectModal('netflix')" class="text-brand-500 font-bold hover:underline">Read Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+                                            <button onclick="openProjectModal('netflix')" class="text-brand-500 font-bold hover:underline text-left">Read Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
                                             <a href="https://github.com/SohailArif313/Netflix_Analysis_1990s" target="_blank" rel="noopener" class="text-zinc-500 hover:text-zinc-300"><i class="fa-brands fa-github"></i> Source</a>
                                         </div>
                                     </div>
@@ -491,7 +478,7 @@
                                             <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Plotly</span>
                                         </div>
                                         <div class="flex items-center justify-between text-xs pt-2 border-t border-zinc-900">
-                                            <button onclick="openProjectModal('nobel')" class="text-brand-500 font-bold hover:underline">Read Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+                                            <button onclick="openProjectModal('nobel')" class="text-brand-500 font-bold hover:underline text-left">Read Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
                                             <a href="https://github.com/SohailArif313/nobel_prize_analysis" target="_blank" rel="noopener" class="text-zinc-500 hover:text-zinc-300"><i class="fa-brands fa-github"></i> Source</a>
                                         </div>
                                     </div>
@@ -515,10 +502,10 @@
                                         <div class="flex flex-wrap gap-1">
                                             <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Python</span>
                                             <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Matplotlib</span>
-                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Analysis</span>
+                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Statistical</span>
                                         </div>
                                         <div class="flex items-center justify-between text-xs pt-2 border-t border-zinc-900">
-                                            <button onclick="openProjectModal('nyc-sat')" class="text-brand-500 font-bold hover:underline">Read Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+                                            <button onclick="openProjectModal('nyc-sat')" class="text-brand-500 font-bold hover:underline text-left">Read Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
                                             <a href="https://github.com/SohailArif313/nyc_schools_sat_analysis" target="_blank" rel="noopener" class="text-zinc-500 hover:text-zinc-300"><i class="fa-brands fa-github"></i> Source</a>
                                         </div>
                                     </div>
@@ -528,10 +515,11 @@
                             <!-- Project Item 4 -->
                             <article class="proj-card flex flex-col rounded-2xl bg-zinc-900/30 border border-brand-border overflow-hidden hover:border-zinc-800 hover:shadow-xl transition-all duration-300 group">
                                 <div class="aspect-video w-full bg-zinc-850 overflow-hidden relative">
+                                    <!-- Clean analytical visualization backdrop instead of female portrait placeholder -->
                                     <img src="./images/customer-analytics-data-prep.jpg" 
                                          alt="Customer Analytics Data Prep" 
                                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80';" />
+                                         onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80';" />
                                 </div>
                                 <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
                                     <div class="space-y-2">
@@ -542,10 +530,10 @@
                                         <div class="flex flex-wrap gap-1">
                                             <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Data Prep</span>
                                             <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Optimization</span>
-                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Scikit-learn</span>
+                                            <span class="px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 text-[10px] border border-brand-border font-medium">Sklearn</span>
                                         </div>
                                         <div class="flex items-center justify-between text-xs pt-2 border-t border-zinc-900">
-                                            <button onclick="openProjectModal('customer-analytics')" class="text-brand-500 font-bold hover:underline">Read Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+                                            <button onclick="openProjectModal('customer-analytics')" class="text-brand-500 font-bold hover:underline text-left">Read Details <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
                                             <a href="https://github.com/SohailArif313/customer-analytics-data-prep" target="_blank" rel="noopener" class="text-zinc-500 hover:text-zinc-300"><i class="fa-brands fa-github"></i> Source</a>
                                         </div>
                                     </div>
@@ -555,36 +543,7 @@
                         </div>
                     </div>
 
-                    <!-- ================= PAGE 5: BLOGS PAGE ================= -->
-                    <div id="page-blogs" class="page-view space-y-12">
-                        <header class="space-y-4">
-                            <div>
-                                <h2 class="text-3xl font-extrabold tracking-tight text-zinc-100 flex items-center gap-3">
-                                    <span class="p-2 rounded-lg bg-zinc-900 border border-brand-border text-brand-500"><i class="fa-solid fa-feather"></i></span>
-                                    My Articles & Writing
-                                </h2>
-                                <p class="text-zinc-400 text-sm mt-2">Sharing advanced guides on backend optimizations, web automation, and distributed systems. The sections below can be customized instantly.</p>
-                            </div>
-                        </header>
-
-                        <!-- Dynamic Customizable Blogroll Stack -->
-                        <div class="space-y-6" id="blogs-container">
-                            <!-- JS dynamically populates the articles configured inside the tag script below -->
-                        </div>
-
-                        <!-- CTA card to read on Medium -->
-                        <div class="p-8 rounded-2xl bg-gradient-to-r from-zinc-900 to-indigo-950/15 border border-brand-border flex flex-col md:flex-row md:items-center justify-between gap-6">
-                            <div class="space-y-2">
-                                <h4 class="text-lg font-bold text-zinc-200">Want to explore my full profile?</h4>
-                                <p class="text-zinc-400 text-xs leading-relaxed max-w-xl">You can explore my Medium profile to read my complete technical articles, deep dives, and system design tutorials.</p>
-                            </div>
-                            <a href="https://medium.com/@muhammadsohail3542" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-zinc-950 hover:bg-zinc-900 border border-brand-border text-xs font-bold text-zinc-200 gap-2">
-                                Go to Medium <i class="fa-solid fa-arrow-up-right-from-square text-brand-500"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- ================= PAGE 6: CONTACT PAGE ================= -->
+                    <!-- ================= PAGE 5: CONTACT PAGE ================= -->
                     <div id="page-contact" class="page-view space-y-12">
                         <header>
                             <h2 class="text-3xl font-extrabold tracking-tight text-zinc-100 flex items-center gap-3">
@@ -642,7 +601,7 @@
                                     <p class="text-zinc-400 text-[11px] leading-relaxed">
                                         For immediate inquiries or rapid consulting sessions, click below to initiate a direct conversation on WhatsApp.
                                     </p>
-                                    <a href="https://wa.me/923000000000?text=Hi%20Sohail,%20I%20saw%20your%20portfolio%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all">
+                                    <a href="https://wa.me/03294480520?text=Hi%20Sohail,%20I%20saw%20your%20portfolio%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all">
                                         Chat on WhatsApp <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                                     </a>
                                 </div>
@@ -703,13 +662,12 @@
                 <!-- Footer that shows on all pages -->
                 <footer class="w-full py-6 px-6 md:px-12 border-t border-brand-border bg-zinc-950/60 mt-12">
                     <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
-                        <p>&copy; 2026 Muhammad Sohail. All rights reserved.</p>
+                        <p>&copy; <span class="dyn-year">2026</span> Muhammad Sohail. All rights reserved.</p>
                         <div class="flex gap-4">
                             <button onclick="navigateTo('home')" class="hover:text-zinc-300">Home</button>
                             <button onclick="navigateTo('about')" class="hover:text-zinc-300">About</button>
                             <button onclick="navigateTo('skills')" class="hover:text-zinc-300">Skills</button>
                             <button onclick="navigateTo('projects')" class="hover:text-zinc-300">Projects</button>
-                            <button onclick="navigateTo('blogs')" class="hover:text-zinc-300">Blogs</button>
                             <button onclick="navigateTo('contact')" class="hover:text-zinc-300">Contact</button>
                         </div>
                     </div>
@@ -719,8 +677,8 @@
         </div>
 
         <!-- ================= PROJECT DETAIL MODAL OVERLAY ================= -->
-        <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-sm hidden">
-            <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-zinc-900 border border-brand-border p-6 md:p-8 space-y-6">
+        <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-sm hidden modal-overlay">
+            <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-zinc-900 border border-brand-border p-6 md:p-8 space-y-6 modal-container">
                 <button onclick="closeProjectModal()" class="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-full bg-zinc-950 border border-brand-border hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
@@ -746,32 +704,6 @@
             </div>
         </div>
 
-        <!-- ================= BLOG DETAIL MODAL OVERLAY ================= -->
-        <div id="blog-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-zinc-950/80 backdrop-blur-sm hidden">
-            <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-2xl bg-zinc-900 border border-brand-border p-6 md:p-8 space-y-6">
-                <button onclick="closeBlogModal()" class="absolute top-4 right-4 flex items-center justify-center w-8 h-8 rounded-full bg-zinc-950 border border-brand-border hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-                <div class="space-y-4">
-                    <div class="flex items-center gap-2 text-xs text-zinc-500">
-                        <span id="modal-blog-category" class="px-2 py-0.5 rounded bg-zinc-950 text-brand-400 border border-brand-border font-bold uppercase text-[10px] tracking-widest"></span>
-                        <span>&bull;</span>
-                        <span id="modal-blog-date"></span>
-                    </div>
-                    <h3 id="modal-blog-title" class="text-xl md:text-2xl font-extrabold text-zinc-100"></h3>
-                    <div id="modal-blog-content" class="text-zinc-300 text-xs leading-relaxed space-y-4 pt-4 border-t border-zinc-800 whitespace-pre-line"></div>
-                    <div class="flex justify-between items-center pt-6 border-t border-zinc-800">
-                        <a id="modal-blog-link" href="#" target="_blank" class="inline-flex items-center gap-2 text-xs text-brand-400 font-bold hover:underline">
-                            Read Full Article on Publisher <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                        <button onclick="closeBlogModal()" class="px-4 py-2 rounded-xl bg-zinc-950 hover:bg-zinc-850 text-zinc-400 text-xs font-bold transition-colors">
-                            Close Reader
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Pure Javascript Navigation Aur Interactive Control Logic -->
         <script>
             // Elements
@@ -781,6 +713,11 @@
             const sidebarBackdrop = document.getElementById('sidebar-backdrop');
             const navButtons = document.querySelectorAll('.nav-btn');
             const pageViews = document.querySelectorAll('.page-view');
+
+            // Set current dynamic year in elements
+            document.querySelectorAll('.dyn-year').forEach(el => {
+                el.innerText = new Date().getFullYear();
+            });
 
             // 1. Mobile Sidebar Controls
             function toggleMobileSidebar(forceClose = false) {
@@ -801,7 +738,7 @@
             sidebarToggle.addEventListener('click', () => toggleMobileSidebar());
             sidebarBackdrop.addEventListener('click', () => toggleMobileSidebar(true));
 
-            // 2. Multi-Page Navigation Logic
+            // 2. Multi-Page Navigation Logic with History hash sync
             function navigateTo(pageId) {
                 pageViews.forEach(view => {
                     view.classList.remove('active-page');
@@ -812,6 +749,12 @@
                     setTimeout(() => {
                         targetPage.classList.add('active-page');
                     }, 50);
+                    // Sync browser history hash silently
+                    if (history.pushState) {
+                        history.pushState(null, null, '#' + pageId);
+                    } else {
+                        location.hash = '#' + pageId;
+                    }
                 }
 
                 navButtons.forEach(btn => {
@@ -827,31 +770,42 @@
                 toggleMobileSidebar(true);
             }
 
-            // 3. Projects Live Search Filter Only
+            // 3. Projects Live Search Filter with No Results State
             const projectSearchInput = document.getElementById('project-search-input');
             const projCards = document.querySelectorAll('.proj-card');
+            const noProjectsMessage = document.getElementById('no-projects-message');
 
             projectSearchInput.addEventListener('input', () => {
-                const searchQuery = projectSearchInput.value.toLowerCase();
+                const searchQuery = projectSearchInput.value.toLowerCase().trim();
+                let visibleCount = 0;
+
                 projCards.forEach(card => {
                     const cardTitle = card.querySelector('h3').innerText.toLowerCase();
                     const cardDesc = card.querySelector('p').innerText.toLowerCase();
+                    const techTags = Array.from(card.querySelectorAll('span')).map(tag => tag.innerText.toLowerCase()).join(' ');
                     
-                    const matchesSearch = cardTitle.includes(searchQuery) || cardDesc.includes(searchQuery);
+                    const matchesSearch = cardTitle.includes(searchQuery) || cardDesc.includes(searchQuery) || techTags.includes(searchQuery);
 
                     if (matchesSearch) {
                         card.style.display = 'flex';
+                        visibleCount++;
                     } else {
                         card.style.display = 'none';
                     }
                 });
+
+                if (visibleCount === 0) {
+                    noProjectsMessage.classList.remove('hidden');
+                } else {
+                    noProjectsMessage.classList.add('hidden');
+                }
             });
 
             // 4. Projects Modal Data Map
             const projectsData = {
                 'netflix': {
                     title: 'Netflix Data Insights (1990s)',
-                    image: 'https://images.unsplash.com/photo-1574375927938-d5a98e8fed85?auto=format&fit=crop&w=600&q=80',
+                    image: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=600&q=80',
                     desc: 'This project is a detailed analysis tracking the historical content pipeline of Netflix during the 1990s. Using Pandas and Seaborn, we cleaned invalid null dates, visualized trends of content shifts from traditional networks to standalone releases, and calculated ratios for modern genres.',
                     techs: ['Python', 'Pandas', 'Matplotlib', 'Seaborn'],
                     link: 'https://github.com/SohailArif313/Netflix_Analysis_1990s'
@@ -872,73 +826,12 @@
                 },
                 'customer-analytics': {
                     title: 'Customer Analytics Data Prep',
-                    image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80',
+                    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80',
                     desc: 'Designed dynamic clean scripts built for optimization of client pipelines. It downcasts numeric fields dynamically, scales categorical profiles smoothly, and optimizes standard deviation offsets to minimize database memory footprint up to 65%.',
                     techs: ['Data Engineering', 'Memory Casts', 'Sklearn'],
                     link: 'https://github.com/SohailArif313/customer-analytics-data-prep'
                 }
             };
-
-            // ================= EDIT YOUR ARTICLES & WRITING CONFIGURATION HERE =================
-            const blogsData = [
-                {
-                    id: 'blog-1',
-                    title: 'Mastering Unstructured Data: How to Clean Messy PDFs for AI Pipelines',
-                    category: 'Data Engineering',
-                    date: 'August 15, 2025',
-                    readTime: '6 min read',
-                    desc: 'Learn how to design robust Python algorithms to extract clean structural text from unformatted PDFs for vector search systems.',
-                    content: `PDFs contain coordinates, not structural formats. When you parse unstructured files using traditional tools, lines frequently overlap and tables break.
-                    
-                    In this piece, we go through coordinate parsing filters that align paragraphs automatically, extract tabular grids perfectly into structured datasets, and format paragraphs ready for Vector databases in modern RAG systems.`,
-                    link: 'https://medium.com/@muhammadsohail3542'
-                },
-                {
-                    id: 'blog-2',
-                    title: 'Why FastAPI is the Go-To Framework for AI Model Deployment',
-                    category: 'Backend Dev',
-                    date: 'December 20, 2025',
-                    readTime: '4 min read',
-                    desc: 'Explore why asynchronous request handling and dynamic validation make FastAPI optimum for serving heavy statistical models.',
-                    content: `AI workloads and heavy machine learning classifiers demand non-blocking async processes to preserve compute capacities. 
-                    
-                    FastAPI leverages ASGI standard architectures, enables Pydantic inputs validation out of the box, and provides auto-generated Swagger UI dashboards instantly.`,
-                    link: 'https://medium.com/@muhammadsohail3542'
-                }
-            ];
-
-            // Render Blogs Dynamically
-            function renderBlogs() {
-                const container = document.getElementById('blogs-container');
-                container.innerHTML = '';
-                
-                blogsData.forEach(blog => {
-                    const article = document.createElement('article');
-                    article.className = "p-6 rounded-2xl bg-zinc-900/30 border border-brand-border hover:border-zinc-800 transition-all cursor-pointer group flex flex-col sm:flex-row justify-between gap-6";
-                    article.onclick = () => openBlogModal(blog.id);
-                    
-                    article.innerHTML = `
-                        <div class="space-y-3 flex-1">
-                            <div class="flex items-center gap-2 text-[10px] font-bold text-zinc-500">
-                                <span class="px-2 py-0.5 rounded bg-zinc-900 border border-brand-border text-brand-500">${blog.category}</span>
-                                <span>&bull;</span>
-                                <span>${blog.date}</span>
-                                <span>&bull;</span>
-                                <span>${blog.readTime}</span>
-                            </div>
-                            <h3 class="text-lg font-bold text-zinc-100 group-hover:text-brand-500 transition-colors">${blog.title}</h3>
-                            <p class="text-zinc-400 text-xs leading-relaxed">${blog.desc}</p>
-                            <span class="inline-flex items-center gap-1.5 text-xs text-brand-500 font-bold group-hover:translate-x-1 transition-transform pt-1">
-                                Read Article & Specs <i class="fa-solid fa-chevron-right text-[10px]"></i>
-                            </span>
-                        </div>
-                    `;
-                    container.appendChild(article);
-                });
-            }
-
-            // Initialize blogs on load
-            renderBlogs();
 
             // Modal Trigger Functions
             function openProjectModal(id) {
@@ -965,24 +858,10 @@
                 document.getElementById('project-modal').classList.add('hidden');
             }
 
-            function openBlogModal(id) {
-                const data = blogsData.find(b => b.id === id);
-                if (!data) return;
-                document.getElementById('modal-blog-title').innerText = data.title;
-                document.getElementById('modal-blog-category').innerText = data.category;
-                document.getElementById('modal-blog-date').innerText = data.date;
-                document.getElementById('modal-blog-content').innerText = data.content;
-                document.getElementById('modal-blog-link').href = data.link;
-
-                document.getElementById('blog-modal').classList.remove('hidden');
-            }
-
-            function closeBlogModal() {
-                document.getElementById('blog-modal').classList.add('hidden');
-            }
-
             // 5. Secure Contact Form Submission via Web3Forms
             function handleFormSubmit(e) {
+                e.preventDefault(); // Moved to the very top to prevent any browser redirection instantly
+
                 const form = document.getElementById('contact-form');
                 const nameVal = document.getElementById('form-name').value;
                 const emailVal = document.getElementById('form-email').value;
@@ -992,15 +871,12 @@
                 const accessKey = formData.get('access_key');
 
                 if(accessKey === 'YOUR_ACCESS_KEY_HERE' || accessKey.trim() === '') {
-                    e.preventDefault();
                     const mailtoUrl = `mailto:muhammadsohail3542@gmail.com?subject=Portfolio Project Inquiry&body=Name: ${encodeURIComponent(nameVal)}%0D%0AEmail: ${encodeURIComponent(emailVal)}%0D%0AMessage: ${encodeURIComponent(msgVal)}`;
                     window.location.href = mailtoUrl;
                     
                     document.getElementById('contact-form').classList.add('hidden');
                     document.getElementById('contact-success').classList.remove('hidden');
                 } else {
-                    e.preventDefault();
-                    
                     fetch('https://api.web3forms.com/submit', {
                         method: 'POST',
                         body: formData
@@ -1025,6 +901,30 @@
                 document.getElementById('contact-form').classList.remove('hidden');
                 document.getElementById('contact-success').classList.add('hidden');
             }
+
+            // Keyboard Accessibility & Dismiss modal logic on backdrop click
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeProjectModal();
+                }
+            });
+
+            document.querySelectorAll('.modal-overlay').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('modal-overlay')) {
+                        closeProjectModal();
+                    }
+                });
+            });
+
+            // Initialize correct URL routing on loaded state
+            window.addEventListener('DOMContentLoaded', () => {
+                const currentHash = window.location.hash.replace('#', '');
+                const validPages = ['home', 'about', 'skills', 'projects', 'contact'];
+                if (currentHash && validPages.includes(currentHash)) {
+                    navigateTo(currentHash);
+                }
+            });
         </script>
     </body>
 </html>
